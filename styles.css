@@ -123,6 +123,14 @@ section{padding:60px 0;}
   font-size: 18px;
 }
 
+.mission-section p {
+  margin-bottom: 20px; /* space between paragraphs */
+  line-height: 1.6;    /* improves readability */
+}
+
+.mission-section {
+  text-align: center;
+}
 
 /* Packages */
 .package-grid {
@@ -223,6 +231,5 @@ header nav a {
 header nav a:hover {
   color: #f1f1f1;        /* slightly lighter white on hover */
 }
-
 
 
