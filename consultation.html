@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free 15 Minute Consultation Form</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .form-wrapper h1 { text-align:center; margin-bottom:20px; }
+    label { display:block; margin-top:15px; font-weight:600; }
+    input, select, textarea {
+      width:100%; padding:10px; margin-top:6px;
+      border:1px solid #ccc; border-radius:6px; font-size:16px;
+    }
+    button {
+      margin-top:20px; background: var(--red); color: var(--white);
+      border:none; padding:12px 20px; border-radius:6px;
+      font-size:16px; font-weight:700; cursor:pointer;
+    }
+    button:hover { background: var(--red-dark); }
+  </style>
+
+<!-- Favicon & app icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<!-- optional legacy ICO (browsers will use pngs first) -->
+<link rel="shortcut icon" href="favicon.ico">
+
+<!-- optional manifest (if you created site.webmanifest) -->
+<link rel="manifest" href="site.webmanifest">
+
+<!-- tile color / theme -->
+<meta name="msapplication-TileColor" content="#1C1C1C">
+<meta name="theme-color" content="#E53935">
+</head>
+<body>
+<header>
+  <div class="inner">
+    <img src="gslogo.png" alt="Grand Slam Co. logo" style="height:100px">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About / Our Coaches</a>
+      <a href="packages.html">Packages / Prices</a>
+      <a href="faq.html">FAQs</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="form-wrapper">
+  <h1>Free 15 Minute Consultation Form</h1>
+
+  <!-- Replace the form action URL with your own Formspree endpoint (next step) -->
+  <form action="https://formspree.io/f/mwprkojp" method="POST">
+    <label>Full Name*:
+      <input type="text" name="Full Name" required>
+    </label>
+
+    <label>Email*:
+      <input type="email" name="Email" required>
+    </label>
+
+    <label>Are you a Player, Parent or Coach?*:
+      <select name="Role" required>
+        <option value="">Select one</option>
+        <option>Player</option>
+        <option>Parent</option>
+        <option>Coach</option>
+      </select>
+    </label>
+
+    <label>Private, Semi-Private or Team Coaching?*:
+      <select name="Coaching Type" required>
+        <option value="">Select one</option>
+        <option>Private</option>
+        <option>Semi-Private</option>
+        <option>Team</option>
+      </select>
+    </label>
+
+    <label>Player age and level of baseball?*:
+      <input type="text" name="Player Age & Level" required>
+    </label>
+
+    <label>Preferred date and time for the call? (3 availabilities)*:
+      <input type="text" name="Preferred Date & Time" placeholder="e.g. Oct 1 - 3pm, Oct 6 - 5pm, Oct 23 - 7pm" required>
+    </label>
+
+    <label>Message (optional):
+      <textarea name="Message" rows="4"></textarea>
+    </label>
+
+    <button type="submit">Submit</button>
+  </form>
+</main>
+
+<footer>
+  <div class="inner">
+    <p>&copy; <span>2024</span> Grand Slam Co. | grandslamclinics@gmail.com</p>
+  </div>
+<style>
+  footer {
+  background: var(--black);   /* black background */
+  color: var(--white);        /* white text */
+  border-top: none;           /* remove the old light border */
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer p {
+  color: var(--white);        /* ensure paragraph text is white */
+  margin: 6px 0;
+}
+</style>
+</footer>
+</body>
+</html>
