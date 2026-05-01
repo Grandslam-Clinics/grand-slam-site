@@ -428,136 +428,11 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
 .footer-top { grid-template-columns: 1fr; }
 }
 
-
-/* == GSC CONTACT MODAL (CSS :target approach — zero JS required) == */
-.gsc-overlay{
-  display:none;
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  background:rgba(0,0,0,.75);
-  z-index:9000;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-}
-.gsc-overlay:target{outline:none;}
-.gsc-modal{
-  background:#fff;
-  border-radius:10px;
-  width:100%;
-  max-width:760px;
-  max-height:92vh;
-  overflow-y:auto;
-  position:relative;
-}
-.gsc-modal-close{position:sticky;top:0;display:flex;justify-content:flex-end;padding:12px 14px 0;background:#fff;z-index:1;}
-.gsc-modal-close a{background:none;border:none;cursor:pointer;font-size:22px;color:#888;line-height:1;padding:4px 8px;border-radius:4px;text-decoration:none;}
-.gsc-modal-close a:hover{background:#f0f0f0;color:#333;}
-.gsc-modal-inner{padding:0 32px 32px;}
-.gsc-tabs{display:flex;background:rgba(0,0,0,.05);border-radius:6px 6px 0 0;overflow:hidden;border:1px solid rgba(0,0,0,.08);border-bottom:none;}
-.gsc-tab-btn{flex:1;padding:14px 16px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#888;text-decoration:none;display:block;text-align:center;position:relative;transition:all .2s;}
-.gsc-tab-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#C8100E;transform:scaleX(0);transition:transform .2s;}
-.gsc-tab-btn.active{color:#0D0D0D;background:rgba(200,16,14,.06);}
-.gsc-tab-btn.active::after{transform:scaleX(1);}
-.gsc-tab-btn:hover:not(.active){color:#0D0D0D;background:rgba(0,0,0,.04);}
-.gsc-card{background:#fff;border:1px solid #E4E4E2;border-top:none;border-radius:0 0 8px 8px;}
-.gsc-panel{display:none;padding:28px 0 0;}
-.gsc-panel.active{display:block;}
-.gsc-panel-inner{padding:0 0 28px;}
-.gsc-panel-hdr{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid #EAEAEA;}
-.gsc-panel-hdr h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:#0D0D0D;margin-bottom:4px;}
-.gsc-panel-hdr p{font-size:13px;color:#888;}
-.gsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;}
-.gsc-full{grid-column:1/-1;}
-.gsc-field{display:flex;flex-direction:column;gap:5px;}
-.gsc-field label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;}
-.gsc-field label .req{color:#C8100E;margin-left:2px;}
-.gsc-field input,.gsc-field select,.gsc-field textarea{width:100%;border:1px solid #E0E0E0;border-radius:4px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D0D0D;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;box-sizing:border-box;}
-.gsc-field input:focus,.gsc-field select:focus,.gsc-field textarea:focus{border-color:#C8100E;box-shadow:0 0 0 3px rgba(200,16,14,.1);}
-.gsc-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer;}
-.gsc-field textarea{resize:vertical;min-height:90px;line-height:1.6;}
-.gsc-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px;}
-.gsc-check{display:flex;align-items:center;gap:8px;font-size:13px;color:#0D0D0D;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:0;}
-.gsc-check input[type=checkbox]{width:15px;height:15px;flex-shrink:0;accent-color:#C8100E;cursor:pointer;padding:0;}
-.gsc-divider{grid-column:1/-1;height:1px;background:#EAEAEA;margin:2px 0;}
-.gsc-footer{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.gsc-note{font-size:11px;color:#aaa;}
-.gsc-submit{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;padding:13px 32px;background:#C8100E;color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .2s;}
-.gsc-submit:hover{background:#a00c0b;}
-.gsc-success{display:none;text-align:center;padding:40px 16px;}
-.gsc-success.show{display:block;}
-.gsc-success-icon{width:52px;height:52px;background:#fef0f0;border:2px solid #C8100E;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;}
-.gsc-success h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:#0D0D0D;margin-bottom:8px;}
-.gsc-success p{font-size:13px;color:#888;}
-@media(max-width:600px){
-  .gsc-modal-inner{padding:0 16px 24px;}
-  .gsc-grid{grid-template-columns:1fr;}
-  .gsc-full{grid-column:1;}
-  .gsc-checks{grid-template-columns:1fr;}
-  .gsc-footer{flex-direction:column;align-items:stretch;}
-}
-
-
-/* ── GSC FORM MODAL ── */
-#gscModalOverlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
-  z-index: 2147483647;
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-#gscModalOverlay.open {
-  display: block;
-}
-#gscModalWrap {
-  
-      --red: #d0021b;
-      --red-dark: #a30015;
-      --red-glow: rgba(208,2,27,0.25);
-      --navy: #09101f;
-      --navy-mid: #111827;
-      --navy-light: #1a2540;
-      --card: #141c2e;
-      --border: rgba(255,255,255,0.08);
-      --text: #f0f4ff;
-      --muted: #8a9ab8;
-      --gold: #e8b84b;
-    
-  min-height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 40px 16px 60px;
-  box-sizing: border-box;
-}
-#gscModalContent {
-  width: 100%;
-  max-width: 820px;
-  position: relative;
-}
-#gscCloseBtn {
-  position: fixed;
-  top: 16px;
-  right: 20px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  font-size: 20px;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  line-height: 1;
-}
-#gscCloseBtn:hover { background: rgba(255,255,255,0.2); }
-
-    #gscModalWrap :root {
+/* === GSF MODAL === */
+#gsfOverlay{display:none;position:fixed;inset:0;z-index:99999;background:rgba(9,16,31,0.93);overflow-y:auto;box-sizing:border-box;}
+#gsfOverlay.open{display:block;}
+#gsfWrap{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px 60px;box-sizing:border-box;}
+#gsfBox{width:100%;max-width:780px;position:relative;
       --red: #d0021b;
       --red-dark: #a30015;
       --red-glow: rgba(208,2,27,0.25);
@@ -570,8 +445,15 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       --muted: #8a9ab8;
       --gold: #e8b84b;
     }
+#gsfClose{position:fixed;top:14px;right:18px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:18px;width:36px;height:36px;border-radius:50%;cursor:pointer;z-index:100000;line-height:1;display:flex;align-items:center;justify-content:center;}
+#gsfClose:hover{background:rgba(255,255,255,0.3);}
+/* Scoped form styles */
+#gsfBox .tabs-wrap{padding:0;}
+#gsfBox .form-card{padding:0;margin:0;}
 
-    #gscModalWrap *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+
+    
 
     
 
@@ -607,7 +489,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
     
 
     /* ── TABS ── */
-    #gscModalWrap .tabs-wrap {
+    .tabs-wrap {
       position: relative;
       z-index: 1;
       max-width: 780px;
@@ -615,7 +497,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       padding: 0 24px;
     }
 
-    #gscModalWrap .tabs {
+    .tabs {
       display: flex;
       gap: 2px;
       background: rgba(255,255,255,0.04);
@@ -625,7 +507,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       border-bottom: none;
     }
 
-    #gscModalWrap .tab-btn {
+    .tab-btn {
       flex: 1;
       padding: 16px 20px;
       background: none;
@@ -641,7 +523,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       position: relative;
     }
 
-    #gscModalWrap .tab-btn::after {
+    .tab-btn::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -651,21 +533,21 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       transition: transform .25s;
     }
 
-    #gscModalWrap .tab-btn.active {
+    .tab-btn.active {
       color: var(--text);
       background: rgba(208,2,27,0.08);
     }
-    #gscModalWrap .tab-btn.active::after { transform: scaleX(1); }
-    #gscModalWrap .tab-btn:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.04); }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-btn:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.04); }
 
     /* ── FORM CARD ── */
-    #gscModalWrap .form-card {
+    .form-card {
       max-width: 780px;
       margin: 0 auto 80px;
       padding: 0 24px;
     }
 
-    #gscModalWrap .form-panel {
+    .form-panel {
       display: none;
       background: var(--card);
       border: 1px solid var(--border);
@@ -675,7 +557,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       animation: fadeUp .3s ease;
     }
 
-    #gscModalWrap .form-panel.active { display: block; }
+    .form-panel.active { display: block; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
@@ -687,17 +569,17 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
     .panel-
 
     /* ── GRID ── */
-    #gscModalWrap .form-grid {
+    .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px 24px;
     }
-    #gscModalWrap .col-full { grid-column: 1 / -1; }
+    .col-full { grid-column: 1 / -1; }
 
     /* ── FIELDS ── */
-    #gscModalWrap .field { display: flex; flex-direction: column; gap: 8px; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
 
-    #gscModalWrap label {
+    label {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -705,9 +587,9 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       color: var(--muted);
     }
 
-    #gscModalWrap .req { color: var(--red); margin-left: 2px; }
+    .req { color: var(--red); margin-left: 2px; }
 
-    #gscModalWrap input, select, textarea {
+    input, select, textarea {
       width: 100%;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
@@ -722,14 +604,14 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       -webkit-appearance: none;
     }
 
-    #gscModalWrap input::placeholder, textarea::placeholder { color: rgba(138,154,184,0.5); }
+    input::placeholder, textarea::placeholder { color: rgba(138,154,184,0.5); }
 
-    #gscModalWrap input:focus, select:focus, textarea:focus {
+    input:focus, select:focus, textarea:focus {
       border-color: rgba(208,2,27,0.6);
       box-shadow: 0 0 0 3px rgba(208,2,27,0.12);
     }
 
-    #gscModalWrap select {
+    select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9ab8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
@@ -737,7 +619,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       cursor: pointer;
     }
 
-    #gscModalWrap select option { background: var(--navy-mid); color: var(--text); }
+    select option { background: var(--navy-mid); color: var(--text); }
 
     textarea {
       resize: vertical;
@@ -746,14 +628,14 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
     }
 
     /* ── CHECKBOX GROUP ── */
-    #gscModalWrap .checkbox-group {
+    .checkbox-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 4px;
     }
 
-    #gscModalWrap .check-label {
+    .check-label {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -765,7 +647,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       color: var(--text);
     }
 
-    #gscModalWrap .check-label input[type="checkbox"] {
+    .check-label input[type="checkbox"] {
       width: 18px;
       height: 18px;
       flex-shrink: 0;
@@ -775,7 +657,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
     }
 
     /* ── DIVIDER ── */
-    #gscModalWrap .divider {
+    .divider {
       grid-column: 1 / -1;
       height: 1px;
       background: var(--border);
@@ -783,7 +665,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
     }
 
     /* ── SUBMIT ── */
-    #gscModalWrap .form-footer {
+    .form-footer {
       margin-top: 32px;
       display: flex;
       align-items: center;
@@ -792,14 +674,14 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       flex-wrap: wrap;
     }
 
-    #gscModalWrap .form-note {
+    .form-note {
       font-size: 12px;
       color: var(--muted);
       font-weight: 300;
     }
-    #gscModalWrap .form-note strong { color: var(--text); font-weight: 500; }
+    .form-note strong { color: var(--text); font-weight: 500; }
 
-    #gscModalWrap .btn-submit {
+    .btn-submit {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 18px;
       letter-spacing: 2.5px;
@@ -815,29 +697,29 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       white-space: nowrap;
     }
 
-    #gscModalWrap .btn-submit::before {
+    .btn-submit::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
     }
 
-    #gscModalWrap .btn-submit:hover {
+    .btn-submit:hover {
       background: var(--red-dark);
       box-shadow: 0 4px 24px var(--red-glow);
       transform: translateY(-1px);
     }
-    #gscModalWrap .btn-submit:active { transform: translateY(0); }
+    .btn-submit:active { transform: translateY(0); }
 
     /* ── SUCCESS STATE ── */
-    #gscModalWrap .success-msg {
+    .success-msg {
       display: none;
       text-align: center;
       padding: 60px 40px;
     }
-    #gscModalWrap .success-msg.show { display: block; }
+    .success-msg.show { display: block; }
 
-    #gscModalWrap .success-icon {
+    .success-icon {
       width: 72px;
       height: 72px;
       background: rgba(208,2,27,0.12);
@@ -848,16 +730,16 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
       justify-content: center;
       margin: 0 auto 24px;
     }
-    #gscModalWrap .success-icon svg { width: 36px; height: 36px; stroke: var(--red); }
+    .success-icon svg { width: 36px; height: 36px; stroke: var(--red); }
 
-    #gscModalWrap .success-msg h3 {
+    .success-msg h3 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 36px;
       letter-spacing: 2px;
       color: var(--text);
       margin-bottom: 12px;
     }
-    #gscModalWrap .success-msg p {
+    .success-msg p {
       font-size: 15px;
       color: var(--muted);
       max-width: 380px;
@@ -866,63 +748,32 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
     }
 
     /* ── INFO STRIP ── */
-    #gscModalWrap .info-strip {
-      position: relative;
-      z-index: 1;
-      max-width: 780px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
+    
 
-    #gscModalWrap .info-item {
-      background: var(--navy-light);
-      border: 1px solid var(--border);
-      padding: 24px 22px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    #gscModalWrap .info-item:first-child { border-radius: 6px 0 0 6px; }
-    #gscModalWrap .info-item:last-child  { border-radius: 0 6px 6px 0; }
+    
+    
+    
 
-    #gscModalWrap .info-icon {
-      font-size: 22px;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    
 
-    #gscModalWrap .info-text strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    #gscModalWrap .info-text span {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.5;
-    }
+    
+    
 
     /* ── RESPONSIVE ── */
-    #gscModalWrap @media (max-width: 640px) {
+    @media (max-width: 640px) {
       
-      #gscModalWrap .form-panel { padding: 28px 20px 32px; }
-      #gscModalWrap .form-grid { grid-template-columns: 1fr; }
-      #gscModalWrap .col-full { grid-column: 1; }
-      #gscModalWrap .checkbox-group { grid-template-columns: 1fr; }
-      #gscModalWrap .form-footer { flex-direction: column; align-items: stretch; }
-      #gscModalWrap .btn-submit { text-align: center; }
-      #gscModalWrap .info-strip { grid-template-columns: 1fr; }
-      #gscModalWrap .info-item:first-child { border-radius: 6px 6px 0 0; }
-      #gscModalWrap .info-item:last-child  { border-radius: 0 0 6px 6px; }
+      .form-panel { padding: 28px 20px 32px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .col-full { grid-column: 1; }
+      .checkbox-group { grid-template-columns: 1fr; }
+      .form-footer { flex-direction: column; align-items: stretch; }
+      .btn-submit { text-align: center; }
+      
+      
+      
     }
   
+@media(max-width:640px){#gsfBox .form-panel{padding:24px 16px 28px;}#gsfBox .form-grid{grid-template-columns:1fr;}#gsfBox .checkbox-group{grid-template-columns:1fr;}#gsfBox .form-footer{flex-direction:column;align-items:stretch;}}
 
 </style>
 </head>
@@ -3698,9 +3549,12 @@ Clinics"/>
 <div class="nav-ctas">
 <a href="tel:+14167055541" class="btn-phone">
 Call Us</a>
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="btn-primary">Book Free Consult</a>
+<a href="#packages" href="#consultation" class="btn-primary">Book Free Consult</a>
 </div>
 </nav>
+
+📞
+
 <!-- HERO -->
 <div class="hero" id="home">
 <div class="hero-bg"><img
@@ -6249,7 +6103,7 @@ AR/604PFPt7JTMOelFFAGi67CF9KKKKAP//Z" alt="Grand Slam Clinics"/></div>
 <p class="hero-sub">Year-round elite coaching from former rep players and champions —
 built for serious athletes aged 8–18 across the Greater Toronto Area.</p>
 <div class="hero-ctas">
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="btn-hero-p">Book Free Consultation →</a>
+<a href="#consultation" class="btn-hero-p">Book Free Consultation →</a>
 <a href="#coaches" class="btn-hero-s">Meet Our Coaches</a>
 </div>
 <div class="hero-stats">
@@ -6317,6 +6171,12 @@ separates good players from great ones.</p></div>
 </div>
 </div>
 </section>
+
+🏏
+⚾
+🧤
+🧠
+
 <!-- ACTION PHOTO CAROUSEL -->
 <div class="photo-carousel-section">
 <div class="photo-carousel-header">
@@ -36836,8 +36696,8 @@ player's development needs and goals.</p>
 (save $25)</li><li>10-session package — $600 (save $150)</li><li>Fully personalized
 plan</li><li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="javascript:void(0)" onclick="openGscModal('quote')" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36850,8 +36710,8 @@ at a more accessible price point.</p>
 player</li><li>Great for friends &amp; teammates</li><li>Healthy competitive dynamic</li>
 <li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="javascript:void(0)" onclick="openGscModal('quote')" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36865,8 +36725,8 @@ staff to strengthen the entire roster — any time of year.</p>
 packages</li><li>Quoted by roster size &amp; frequency</li><li>Complements existing coaching
 staff</li><li>Team-wide development focus</li></ul>
 <div class="pkg-cta-pair">
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="javascript:void(0)" onclick="openGscModal('quote')" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -37013,7 +36873,7 @@ training plan for your player together.</p>
 <div class="contact-icon"> </div><div><div class="contact-label">Email</div><div
 class="contact-value">grandslamclinics@gmail.com</div></div>
 </a>
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="contact-method">
+<a href="#packages" class="contact-method">
 <div class="contact-icon"> </div><div><div class="contact-label">Online
 Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 </a>
@@ -37021,6 +36881,11 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 </div>
 </div>
 </section>
+
+📞
+✉️
+📋
+
 <!-- CTA BANNER -->
 <div class="cta-banner">
 <div class="cta-wm">GRAND SLAM</div>
@@ -37028,10 +36893,13 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 <p>Spots fill up fast. Book your free consultation today and lock in a plan before the
 season starts.</p>
 <div class="cta-btns">
-<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="btn-white">Book Free Consultation →</a>
-<a href="javascript:void(0)" onclick="openGscModal('quote')" class="btn-woutline">Get a Custom Quote →</a>
+<a href="#consultation" class="btn-white">Book Free Consultation →</a>
+<a href="#quote" class="btn-woutline">Get a Custom Quote →</a>
 </div>
 </div>
+
+📞
+
 <!-- FOOTER -->
 <footer>
 <div class="footer-top">
@@ -39850,12 +39718,12 @@ function maxIdx()
 { return total - getVisible(); }
 function getSlideW() {
 const gap = 16;
-const pad = track.parentElement.parentElement.querySelector('.photo-carousel-header').offsetLeft || (window.innerWidth * 0.05);
-return slides[0].offsetWidth + gap;
+const pad = (function(){ var el = track && track.parentElement && track.parentElement.parentElement && track.parentElement.parentElement.querySelector('.photo-carousel-header'); return el ? el.offsetLeft : window.innerWidth * 0.05; }());
+return slides && slides[0] ? slides[0].offsetWidth + gap : 320 + gap;
 }
 function moveTo(idx, animate) {
 cur = Math.max(0, Math.min(idx, maxIdx()));
-track.style.transition = animate === false ? 'none' : 'transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)';
+track.style.transition = animate === false ? 'none' : 'transform 0.55s cubicbezier(0.25,0.46,0.45,0.94)';
 track.style.transform = `translateX(-${cur * getSlideW()}px)`;
 const pct = ((cur + getVisible()) / total) * 100;
 bar.style.width = Math.min(pct, 100) + '%';
@@ -39895,7 +39763,7 @@ let cur = 0, startX = 0, dragOffset = 0, isDragging = false;
 function getVisible() { return window.innerWidth <= 600 ? 1 : window.innerWidth <= 960 ?
 2 : 3; }
 function maxIdx() { return total - getVisible(); }
-function getCardW() { return cards[0].offsetWidth + 22; }
+function getCardW() { return cards[0] ? cards[0].offsetWidth + 22 : 200; }
 
 // build dots
 const numDots = Math.ceil(total / getVisible());
@@ -39916,7 +39784,7 @@ dots.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
 }
 function moveTo(idx, animate) {
 cur = Math.max(0, Math.min(idx, maxIdx()));
-track.style.transition = animate === false ? 'none' : 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+track.style.transition = animate === false ? 'none' : 'transform 0.5s cubicbezier(0.25,0.46,0.45,0.94)';
 track.style.transform = `translateX(-${cur * getCardW()}px)`;
 updateDots();
 }
@@ -39946,384 +39814,11 @@ moveTo(0, false);
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-
-
-
-
-
-    <div class="gsc-modal-inner">
-      <div class="gsc-tabs">
-        <a href="javascript:void(0)" onclick="openGscModal('consultation')" class="gsc-tab-btn active">&#128197;&nbsp; Book a Free Consultation</a>
-        <a href="javascript:void(0)" onclick="openGscModal('quote')"   class="gsc-tab-btn ">&#128203;&nbsp; Get a Custom Quote</a>
-      </div>
-      <div class="gsc-card">
-
-        <!-- CONSULTATION PANEL -->
-        <div class="gsc-panel active" id="gscPanel-consultation">
-          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
-            <div class="gsc-panel-hdr" style="padding-top:24px;">
-              <h3>Book a Free Consultation</h3>
-              <p>Tell us your goals and we'll set up a no-obligation call with a coach.</p>
-            </div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-              <input type="hidden" name="_subject" value="Free Consultation - Grand Slam Clinics"/>
-              <input type="hidden" name="form_type" value="Free Consultation"/>
-              <div class="gsc-grid">
-                <div class="gsc-field">
-                  <label>First Name <span class="req">*</span></label>
-                  <input type="text" name="first_name" placeholder="Alex" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Last Name <span class="req">*</span></label>
-                  <input type="text" name="last_name" placeholder="Rivera" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Email <span class="req">*</span></label>
-                  <input type="email" name="email" placeholder="alex@example.com" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Phone</label>
-                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
-                </div>
-                <div class="gsc-divider"></div>
-                <div class="gsc-field">
-                  <label>Player Age / Level <span class="req">*</span></label>
-                  <select name="player_level" required>
-                    <option value="" disabled selected>Select a level...</option>
-                    <option>Youth (8-12)</option>
-                    <option>Middle School (13-14)</option>
-                    <option>High School (15-18)</option>
-                    <option>College</option>
-                    <option>Adult / Recreational</option>
-                  </select>
-                </div>
-                <div class="gsc-field">
-                  <label>Preferred Contact Time</label>
-                  <select name="preferred_time">
-                    <option value="" disabled selected>Select a time...</option>
-                    <option>Morning (8am - 12pm)</option>
-                    <option>Afternoon (12pm - 5pm)</option>
-                    <option>Evening (5pm - 8pm)</option>
-                    <option>Anytime</option>
-                  </select>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>What do you want to work on? <span class="req">*</span></label>
-                  <div class="gsc-checks">
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Hitting"/> Hitting &amp; Bat Speed</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Pitching"/> Pitching &amp; Mechanics</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Fielding"/> Fielding &amp; Defense</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Baserunning"/> Speed &amp; Baserunning</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Catching"/> Catching</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Mental"/> Mental Game / IQ</label>
-                  </div>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>Anything else we should know?</label>
-                  <textarea name="message" placeholder="Goals, skill level, availability..."></textarea>
-                </div>
-              </div>
-              <div class="gsc-footer">
-                <p class="gsc-note">No spam. No obligation. Response within 24 hrs.</p>
-                <button type="submit" class="gsc-submit">Book My Free Call &rarr;</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- QUOTE PANEL -->
-        <div class="gsc-panel " id="gscPanel-quote">
-          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
-            <div class="gsc-panel-hdr" style="padding-top:24px;">
-              <h3>Get a Custom Quote</h3>
-              <p>Building a program for your team? We'll send a tailored proposal.</p>
-            </div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-              <input type="hidden" name="_subject" value="Custom Quote - Grand Slam Clinics"/>
-              <input type="hidden" name="form_type" value="Custom Quote"/>
-              <div class="gsc-grid">
-                <div class="gsc-field">
-                  <label>Your Name <span class="req">*</span></label>
-                  <input type="text" name="name" placeholder="Coach Johnson" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Email <span class="req">*</span></label>
-                  <input type="email" name="email" placeholder="coach@team.com" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Phone</label>
-                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
-                </div>
-                <div class="gsc-field">
-                  <label>Team / Organization</label>
-                  <input type="text" name="org_name" placeholder="Riverside Mustangs"/>
-                </div>
-                <div class="gsc-divider"></div>
-                <div class="gsc-field">
-                  <label>Number of Players <span class="req">*</span></label>
-                  <select name="player_count" required>
-                    <option value="" disabled selected>Select range...</option>
-                    <option>1-5 players</option>
-                    <option>6-10 players</option>
-                    <option>11-20 players</option>
-                    <option>21-35 players</option>
-                    <option>36+ players</option>
-                  </select>
-                </div>
-                <div class="gsc-field">
-                  <label>Player Age / Level <span class="req">*</span></label>
-                  <select name="player_level" required>
-                    <option value="" disabled selected>Select a level...</option>
-                    <option>Youth (8-12)</option>
-                    <option>Middle School (13-14)</option>
-                    <option>High School (15-18)</option>
-                    <option>College</option>
-                    <option>Mixed Levels</option>
-                  </select>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>Type of Training Needed</label>
-                  <div class="gsc-checks">
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Full Team"/> Full Team Training</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Position"/> Position-Specific Clinics</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Hitting"/> Hitting Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Pitching"/> Pitching Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Fielding"/> Fielding Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Pre-Season"/> Pre-Season Prep</label>
-                  </div>
-                </div>
-                <div class="gsc-field">
-                  <label>Estimated Budget</label>
-                  <select name="budget">
-                    <option value="" disabled selected>Optional...</option>
-                    <option>Under $500</option>
-                    <option>$500 - $1,500</option>
-                    <option>$1,500 - $5,000</option>
-                    <option>$5,000+</option>
-                    <option>Flexible / Unknown</option>
-                  </select>
-                </div>
-                <div class="gsc-field">
-                  <label>Preferred Start Timeframe</label>
-                  <select name="timeframe">
-                    <option value="" disabled selected>Select...</option>
-                    <option>As soon as possible</option>
-                    <option>Within 1 month</option>
-                    <option>1-3 months</option>
-                    <option>3-6 months</option>
-                    <option>6+ months out</option>
-                  </select>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>Describe What You're Looking For <span class="req">*</span></label>
-                  <textarea name="message" placeholder="Team goals, focus areas, scheduling needs..." required></textarea>
-                </div>
-              </div>
-              <div class="gsc-footer">
-                <p class="gsc-note">No obligation. Detailed proposal with pricing.</p>
-                <button type="submit" class="gsc-submit">Request My Quote &rarr;</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-    <div class="gsc-modal-inner">
-      <div class="gsc-tabs">
-        <a href="javascript:void(0)" onclick="openGscModal('consultation')" class="gsc-tab-btn ">&#128197;&nbsp; Book a Free Consultation</a>
-        <a href="javascript:void(0)" onclick="openGscModal('quote')"   class="gsc-tab-btn active">&#128203;&nbsp; Get a Custom Quote</a>
-      </div>
-      <div class="gsc-card">
-
-        <!-- CONSULTATION PANEL -->
-        <div class="gsc-panel " id="gscPanel-consultation">
-          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
-            <div class="gsc-panel-hdr" style="padding-top:24px;">
-              <h3>Book a Free Consultation</h3>
-              <p>Tell us your goals and we'll set up a no-obligation call with a coach.</p>
-            </div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-              <input type="hidden" name="_subject" value="Free Consultation - Grand Slam Clinics"/>
-              <input type="hidden" name="form_type" value="Free Consultation"/>
-              <div class="gsc-grid">
-                <div class="gsc-field">
-                  <label>First Name <span class="req">*</span></label>
-                  <input type="text" name="first_name" placeholder="Alex" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Last Name <span class="req">*</span></label>
-                  <input type="text" name="last_name" placeholder="Rivera" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Email <span class="req">*</span></label>
-                  <input type="email" name="email" placeholder="alex@example.com" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Phone</label>
-                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
-                </div>
-                <div class="gsc-divider"></div>
-                <div class="gsc-field">
-                  <label>Player Age / Level <span class="req">*</span></label>
-                  <select name="player_level" required>
-                    <option value="" disabled selected>Select a level...</option>
-                    <option>Youth (8-12)</option>
-                    <option>Middle School (13-14)</option>
-                    <option>High School (15-18)</option>
-                    <option>College</option>
-                    <option>Adult / Recreational</option>
-                  </select>
-                </div>
-                <div class="gsc-field">
-                  <label>Preferred Contact Time</label>
-                  <select name="preferred_time">
-                    <option value="" disabled selected>Select a time...</option>
-                    <option>Morning (8am - 12pm)</option>
-                    <option>Afternoon (12pm - 5pm)</option>
-                    <option>Evening (5pm - 8pm)</option>
-                    <option>Anytime</option>
-                  </select>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>What do you want to work on? <span class="req">*</span></label>
-                  <div class="gsc-checks">
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Hitting"/> Hitting &amp; Bat Speed</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Pitching"/> Pitching &amp; Mechanics</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Fielding"/> Fielding &amp; Defense</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Baserunning"/> Speed &amp; Baserunning</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Catching"/> Catching</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Mental"/> Mental Game / IQ</label>
-                  </div>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>Anything else we should know?</label>
-                  <textarea name="message" placeholder="Goals, skill level, availability..."></textarea>
-                </div>
-              </div>
-              <div class="gsc-footer">
-                <p class="gsc-note">No spam. No obligation. Response within 24 hrs.</p>
-                <button type="submit" class="gsc-submit">Book My Free Call &rarr;</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- QUOTE PANEL -->
-        <div class="gsc-panel active" id="gscPanel-quote">
-          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
-            <div class="gsc-panel-hdr" style="padding-top:24px;">
-              <h3>Get a Custom Quote</h3>
-              <p>Building a program for your team? We'll send a tailored proposal.</p>
-            </div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-              <input type="hidden" name="_subject" value="Custom Quote - Grand Slam Clinics"/>
-              <input type="hidden" name="form_type" value="Custom Quote"/>
-              <div class="gsc-grid">
-                <div class="gsc-field">
-                  <label>Your Name <span class="req">*</span></label>
-                  <input type="text" name="name" placeholder="Coach Johnson" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Email <span class="req">*</span></label>
-                  <input type="email" name="email" placeholder="coach@team.com" required/>
-                </div>
-                <div class="gsc-field">
-                  <label>Phone</label>
-                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
-                </div>
-                <div class="gsc-field">
-                  <label>Team / Organization</label>
-                  <input type="text" name="org_name" placeholder="Riverside Mustangs"/>
-                </div>
-                <div class="gsc-divider"></div>
-                <div class="gsc-field">
-                  <label>Number of Players <span class="req">*</span></label>
-                  <select name="player_count" required>
-                    <option value="" disabled selected>Select range...</option>
-                    <option>1-5 players</option>
-                    <option>6-10 players</option>
-                    <option>11-20 players</option>
-                    <option>21-35 players</option>
-                    <option>36+ players</option>
-                  </select>
-                </div>
-                <div class="gsc-field">
-                  <label>Player Age / Level <span class="req">*</span></label>
-                  <select name="player_level" required>
-                    <option value="" disabled selected>Select a level...</option>
-                    <option>Youth (8-12)</option>
-                    <option>Middle School (13-14)</option>
-                    <option>High School (15-18)</option>
-                    <option>College</option>
-                    <option>Mixed Levels</option>
-                  </select>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>Type of Training Needed</label>
-                  <div class="gsc-checks">
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Full Team"/> Full Team Training</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Position"/> Position-Specific Clinics</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Hitting"/> Hitting Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Pitching"/> Pitching Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Fielding"/> Fielding Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Pre-Season"/> Pre-Season Prep</label>
-                  </div>
-                </div>
-                <div class="gsc-field">
-                  <label>Estimated Budget</label>
-                  <select name="budget">
-                    <option value="" disabled selected>Optional...</option>
-                    <option>Under $500</option>
-                    <option>$500 - $1,500</option>
-                    <option>$1,500 - $5,000</option>
-                    <option>$5,000+</option>
-                    <option>Flexible / Unknown</option>
-                  </select>
-                </div>
-                <div class="gsc-field">
-                  <label>Preferred Start Timeframe</label>
-                  <select name="timeframe">
-                    <option value="" disabled selected>Select...</option>
-                    <option>As soon as possible</option>
-                    <option>Within 1 month</option>
-                    <option>1-3 months</option>
-                    <option>3-6 months</option>
-                    <option>6+ months out</option>
-                  </select>
-                </div>
-                <div class="gsc-field gsc-full">
-                  <label>Describe What You're Looking For <span class="req">*</span></label>
-                  <textarea name="message" placeholder="Team goals, focus areas, scheduling needs..." required></textarea>
-                </div>
-              </div>
-              <div class="gsc-footer">
-                <p class="gsc-note">No obligation. Detailed proposal with pricing.</p>
-                <button type="submit" class="gsc-submit">Request My Quote &rarr;</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-<!-- GSC CONTACT MODAL -->
-<div id="gscModalOverlay">
-  <div id="gscModalWrap">
-    <button id="gscCloseBtn" onclick="closeGscModal()" aria-label="Close">&#x2715;</button>
-    <div id="gscModalContent">
+<!-- GSF MODAL -->
+<div id="gsfOverlay">
+  <button id="gsfClose" onclick="gsfClose()" aria-label="Close">&#x2715;</button>
+  <div id="gsfWrap" onclick="if(event.target===this)gsfClose()">
+    <div id="gsfBox">
       <div class="info-strip">
   <div class="info-item">
     <div class="info-icon">⚡</div>
@@ -40347,17 +39842,15 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </div>
   </div>
 </div>
-      <div class="tabs-wrap" style="padding:0;">
-        <div class="tabs">
-          <button class="tab-btn active" onclick="switchGscTab('consultation', this)">
+      <div class="tabs-wrap">
+        <div class="tabs"><button class="tab-btn active" onclick="gsfSwitch('consultation',this)">
       📅 &nbsp;Book a Free Consultation
     </button>
-    <button class="tab-btn" onclick="switchGscTab('quote', this)">
+    <button class="tab-btn" onclick="gsfSwitch('quote',this)">
       📋 &nbsp;Get a Custom Quote
-    </button>
-        </div>
+    </button></div>
       </div>
-      <div class="form-card" style="padding:0;margin:0;">
+      <div class="form-card">
         <!-- ── CONSULTATION FORM ── -->
   <div class="form-panel active" id="panel-consultation">
     <div class="panel-header">
@@ -40378,7 +39871,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     <form id="form-consultation"
           action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
-          onsubmit="handleGscSubmit(event, 'consultation')">
+          onsubmit="gsfSubmit(event,'consultation')">
 
       <input type="hidden" name="_subject" value="New Consultation Request — Grand Slam Clinics" />
       <input type="hidden" name="form_type" value="Free Consultation" />
@@ -40472,7 +39965,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     <form id="form-quote"
           action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
-          onsubmit="handleGscSubmit(event, 'quote')">
+          onsubmit="gsfSubmit(event,'quote')">
 
       <input type="hidden" name="_subject" value="Custom Quote Request — Grand Slam Clinics" />
       <input type="hidden" name="form_type" value="Custom Quote" />
@@ -40576,52 +40069,50 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </div>
   </div>
 </div>
-<!-- / GSC CONTACT MODAL -->
+<!-- /GSF MODAL -->
 
 <script>
-/* GSC Modal */
-function openGscModal(tab) {
-  var el = document.getElementById('gscModalOverlay');
-  el.classList.add('open');
+/* Grand Slam Clinics — Form Modal */
+function gsfOpen(tab) {
+  document.getElementById('gsfOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (tab === 'quote') {
-    var btn = document.querySelectorAll('#gscModalOverlay .tab-btn')[1];
-    if (btn) switchGscTab('quote', btn);
-  } else {
-    var btn = document.querySelectorAll('#gscModalOverlay .tab-btn')[0];
-    if (btn) switchGscTab('consultation', btn);
-  }
+  var idx = (tab === 'quote') ? 1 : 0;
+  var btn = document.querySelectorAll('#gsfBox .tab-btn')[idx];
+  gsfSwitch(tab === 'quote' ? 'quote' : 'consultation', btn);
 }
-function closeGscModal() {
-  document.getElementById('gscModalOverlay').classList.remove('open');
+function gsfClose() {
+  document.getElementById('gsfOverlay').classList.remove('open');
   document.body.style.overflow = '';
-  history.replaceState(null, '', window.location.pathname);
+  history.replaceState(null, '', window.location.pathname + window.location.search);
 }
-function switchGscTab(id, btn) {
-  document.querySelectorAll('#gscModalOverlay .tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelectorAll('#gscModalOverlay .form-panel').forEach(function(p) { p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('panel-' + id).classList.add('active');
+function gsfSwitch(id, btn) {
+  document.querySelectorAll('#gsfBox .tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('#gsfBox .form-panel').forEach(function(p){p.classList.remove('active');});
+  if (btn) btn.classList.add('active');
+  var panel = document.getElementById('panel-' + id);
+  if (panel) panel.classList.add('active');
 }
-async function handleGscSubmit(e, id) {
+async function gsfSubmit(e, id) {
   e.preventDefault();
-  var form = e.target;
-  var btn = form.querySelector('.btn-submit');
+  var form = e.target, btn = form.querySelector('.btn-submit');
   btn.textContent = 'Sending…'; btn.disabled = true;
   try {
-    var res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-    if (res.ok) {
+    var r = await fetch(form.action, {method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+    if (r.ok) {
       form.style.display = 'none';
       document.getElementById('success-' + id).classList.add('show');
-    } else { btn.textContent = 'Something went wrong — try again'; btn.disabled = false; }
-  } catch(err) { btn.textContent = 'Network error — try again'; btn.disabled = false; }
+    } else { btn.textContent = 'Error - try again'; btn.disabled = false; }
+  } catch(ex) { btn.textContent = 'Network error'; btn.disabled = false; }
 }
-/* Close on backdrop click */
-document.getElementById('gscModalOverlay').addEventListener('click', function(e) {
-  if (e.target === this || e.target.id === 'gscModalWrap') closeGscModal();
-});
-/* Escape key */
-document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeGscModal(); });
+/* Hash-based opening — works on load AND when hash changes on same page */
+function gsfCheckHash() {
+  var h = window.location.hash;
+  if (h === '#consultation') gsfOpen('consultation');
+  else if (h === '#quote') gsfOpen('quote');
+}
+window.addEventListener('hashchange', gsfCheckHash);
+document.addEventListener('DOMContentLoaded', gsfCheckHash);
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') gsfClose(); });
 </script>
 </body>
 </html>
