@@ -86,7 +86,7 @@ center; gap: 8px; transition: border-color 0.2s, transform 0.18s; }
 padding-top: 30px; flex-wrap: wrap; }
 .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--white); line-height: 1; letter-spacing: 0.02em; }
 .hero-stat-num span { color: var(--red); }
-.hero-stat-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; font-weight: 600; }
+.hero-stat-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; font-weight: 600; }
 /* ── TRUST BAR ── */
 /* ── TRUST TICKER ── */
 .trust-bar { background: var(--red); overflow: hidden; position: relative; padding: 0; }
@@ -5803,11 +5803,10 @@ built for serious athletes aged 8–18 across the Greater Toronto Area.</p>
 <a href="#coaches" class="btn-hero-s">Meet Our Coaches</a>
 </div>
 <div class="hero-stats">
-<div><div class="hero-stat-num">6<span>+</span></div><div class="hero-statlabel">Expert Coaches</div></div>
-<div><div class="hero-stat-num">2<span>×</span></div><div class="hero-stat-label">YSBA
-Champions</div></div>
-<div><div class="hero-stat-num">8–<span>18</span></div><div class="hero-statlabel">Ages Coached</div></div>
-<div><div class="hero-stat-num">3<span>+</span></div><div class="hero-statlabel">Programs Available</div></div>
+<div><div class="hero-stat-num">6<span>+</span></div><div class="hero-stat-label">Expert Coaches</div></div>
+<div><div class="hero-stat-num">2<span>×</span></div><div class="hero-stat-label">YSBA Champions</div></div>
+<div><div class="hero-stat-num">8–<span>18</span></div><div class="hero-stat-label">Ages Coached</div></div>
+<div><div class="hero-stat-num">3<span>+</span></div><div class="hero-stat-label">Programs Available</div></div>
 </div>
 </div>
 </div>
@@ -39401,12 +39400,12 @@ function maxIdx()
 { return total - getVisible(); }
 function getSlideW() {
 const gap = 16;
-const pad = track.parentElement.parentElement.querySelector('.photo-carouselheader').offsetLeft || (window.innerWidth * 0.05);
+const pad = track.parentElement.parentElement.querySelector('.photo-carousel-header').offsetLeft || (window.innerWidth * 0.05);
 return slides[0].offsetWidth + gap;
 }
 function moveTo(idx, animate) {
 cur = Math.max(0, Math.min(idx, maxIdx()));
-track.style.transition = animate === false ? 'none' : 'transform 0.55s cubicbezier(0.25,0.46,0.45,0.94)';
+track.style.transition = animate === false ? 'none' : 'transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)';
 track.style.transform = `translateX(-${cur * getSlideW()}px)`;
 const pct = ((cur + getVisible()) / total) * 100;
 bar.style.width = Math.min(pct, 100) + '%';
@@ -39445,11 +39444,8 @@ const total = cards.length;
 let cur = 0, startX = 0, dragOffset = 0, isDragging = false;
 function getVisible() { return window.innerWidth <= 600 ? 1 : window.innerWidth <= 960 ?
 2 : 3; }
-function maxIdx()
-function getCardW()
-
-{ return total - getVisible(); }
-{ return cards[0].offsetWidth + 22; }
+function maxIdx() { return total - getVisible(); }
+function getCardW() { return cards[0].offsetWidth + 22; }
 
 // build dots
 const numDots = Math.ceil(total / getVisible());
@@ -39470,7 +39466,7 @@ dots.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
 }
 function moveTo(idx, animate) {
 cur = Math.max(0, Math.min(idx, maxIdx()));
-track.style.transition = animate === false ? 'none' : 'transform 0.5s cubicbezier(0.25,0.46,0.45,0.94)';
+track.style.transition = animate === false ? 'none' : 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
 track.style.transform = `translateX(-${cur * getCardW()}px)`;
 updateDots();
 }
@@ -39484,7 +39480,7 @@ e.clientX - startX; track.style.transform = `translateX(${-cur * getCardW() +
 dragOffset}px)`; });
 window.addEventListener('mouseup',
 e => { if (!isDragging) return; isDragging = false;
-if (Math.abs(dragOffset) > 60) moveTo(dragOffset < 0 ? cur + getVisible() : cur getVisible(), true); else moveTo(cur, true); dragOffset = 0; });
+if (Math.abs(dragOffset) > 60) moveTo(dragOffset < 0 ? cur + getVisible() : cur - getVisible(), true); else moveTo(cur, true); dragOffset = 0; });
 track.addEventListener('touchstart', e => { startX = e.touches[0].clientX;
 track.style.transition = 'none'; }, {passive:true});
 track.addEventListener('touchmove', e => { dragOffset = e.touches[0].clientX - startX;
