@@ -428,51 +428,74 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
 .footer-top { grid-template-columns: 1fr; }
 }
 
-/* == GSC CONTACT MODAL == */
-.gsc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;}
-.gsc-overlay.visible{display:flex;}
-.gsc-modal{background:#fff;border-radius:10px;width:100%;max-width:760px;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .28s}
-.gsc-overlay.open .gsc-modal{transform:translateY(0)}
-.gsc-modal-close{position:sticky;top:0;display:flex;justify-content:flex-end;padding:14px 16px 0;background:#fff;z-index:1}
-.gsc-modal-close button{background:none;border:none;cursor:pointer;font-size:22px;color:#888;line-height:1;padding:4px 8px;border-radius:4px}
-.gsc-modal-close button:hover{background:#f0f0f0;color:#333}
-.gsc-modal-inner{padding:0 36px 36px}
-.gsc-tabs{display:flex;background:rgba(0,0,0,.05);border-radius:6px 6px 0 0;overflow:hidden;border:1px solid rgba(0,0,0,.08);border-bottom:none;margin-bottom:0}
-.gsc-tab-btn{flex:1;padding:14px 16px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#888;transition:all .2s;position:relative}
-.gsc-tab-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#C8100E;transform:scaleX(0);transition:transform .2s}
-.gsc-tab-btn.active{color:#0D0D0D;background:rgba(200,16,14,.06)}
-.gsc-tab-btn.active::after{transform:scaleX(1)}
-.gsc-tab-btn:hover:not(.active){color:#0D0D0D;background:rgba(0,0,0,.04)}
-.gsc-card{background:#fff;border:1px solid #E4E4E2;border-top:none;border-radius:0 0 8px 8px;padding:32px 0 0}
-.gsc-panel{display:none}
-.gsc-panel.active{display:block}
-.gsc-panel-hdr{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #EAEAEA}
-.gsc-panel-hdr h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.04em;color:#0D0D0D;margin-bottom:4px}
-.gsc-panel-hdr p{font-size:13px;color:#888}
-.gsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
-.gsc-full{grid-column:1/-1}
-.gsc-field{display:flex;flex-direction:column;gap:6px}
-.gsc-field label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888}
-.gsc-field label .req{color:#C8100E;margin-left:2px}
-.gsc-field input,.gsc-field select,.gsc-field textarea{width:100%;border:1px solid #E0E0E0;border-radius:4px;padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D0D0D;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
-.gsc-field input::placeholder,.gsc-field textarea::placeholder{color:#bbb}
-.gsc-field input:focus,.gsc-field select:focus,.gsc-field textarea:focus{border-color:#C8100E;box-shadow:0 0 0 3px rgba(200,16,14,.1)}
-.gsc-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
-.gsc-field textarea{resize:vertical;min-height:100px;line-height:1.6}
-.gsc-checks{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:2px}
-.gsc-check{display:flex;align-items:center;gap:8px;font-size:13px;color:#0D0D0D;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:0}
-.gsc-check input[type=checkbox]{width:15px;height:15px;flex-shrink:0;accent-color:#C8100E;cursor:pointer;padding:0}
-.gsc-divider{grid-column:1/-1;height:1px;background:#EAEAEA;margin:2px 0}
-.gsc-footer{margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.gsc-note{font-size:11px;color:#aaa}
-.gsc-submit{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;padding:14px 36px;background:#C8100E;color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .2s,transform .15s}
-.gsc-submit:hover{background:#a00c0b;transform:translateY(-1px)}
-.gsc-success{display:none;text-align:center;padding:44px 20px}
-.gsc-success.show{display:block}
-.gsc-success-icon{width:56px;height:56px;background:#fef0f0;border:2px solid #C8100E;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
-.gsc-success h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.04em;color:#0D0D0D;margin-bottom:8px}
-.gsc-success p{font-size:13px;color:#888}
-@media(max-width:600px){.gsc-modal-inner{padding:0 18px 28px}.gsc-grid{grid-template-columns:1fr}.gsc-full{grid-column:1}.gsc-checks{grid-template-columns:1fr}.gsc-footer{flex-direction:column;align-items:stretch}}
+
+/* == GSC CONTACT MODAL (CSS :target approach — zero JS required) == */
+.gsc-overlay{
+  display:none;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.75);
+  z-index:9000;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.gsc-overlay:target{display:flex;}
+.gsc-modal{
+  background:#fff;
+  border-radius:10px;
+  width:100%;
+  max-width:760px;
+  max-height:92vh;
+  overflow-y:auto;
+  position:relative;
+}
+.gsc-modal-close{position:sticky;top:0;display:flex;justify-content:flex-end;padding:12px 14px 0;background:#fff;z-index:1;}
+.gsc-modal-close a{background:none;border:none;cursor:pointer;font-size:22px;color:#888;line-height:1;padding:4px 8px;border-radius:4px;text-decoration:none;}
+.gsc-modal-close a:hover{background:#f0f0f0;color:#333;}
+.gsc-modal-inner{padding:0 32px 32px;}
+.gsc-tabs{display:flex;background:rgba(0,0,0,.05);border-radius:6px 6px 0 0;overflow:hidden;border:1px solid rgba(0,0,0,.08);border-bottom:none;}
+.gsc-tab-btn{flex:1;padding:14px 16px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#888;text-decoration:none;display:block;text-align:center;position:relative;transition:all .2s;}
+.gsc-tab-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#C8100E;transform:scaleX(0);transition:transform .2s;}
+.gsc-tab-btn.active{color:#0D0D0D;background:rgba(200,16,14,.06);}
+.gsc-tab-btn.active::after{transform:scaleX(1);}
+.gsc-tab-btn:hover:not(.active){color:#0D0D0D;background:rgba(0,0,0,.04);}
+.gsc-card{background:#fff;border:1px solid #E4E4E2;border-top:none;border-radius:0 0 8px 8px;}
+.gsc-panel{display:none;padding:28px 0 0;}
+.gsc-panel.active{display:block;}
+.gsc-panel-inner{padding:0 0 28px;}
+.gsc-panel-hdr{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid #EAEAEA;}
+.gsc-panel-hdr h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:#0D0D0D;margin-bottom:4px;}
+.gsc-panel-hdr p{font-size:13px;color:#888;}
+.gsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;}
+.gsc-full{grid-column:1/-1;}
+.gsc-field{display:flex;flex-direction:column;gap:5px;}
+.gsc-field label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;}
+.gsc-field label .req{color:#C8100E;margin-left:2px;}
+.gsc-field input,.gsc-field select,.gsc-field textarea{width:100%;border:1px solid #E0E0E0;border-radius:4px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D0D0D;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;box-sizing:border-box;}
+.gsc-field input:focus,.gsc-field select:focus,.gsc-field textarea:focus{border-color:#C8100E;box-shadow:0 0 0 3px rgba(200,16,14,.1);}
+.gsc-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer;}
+.gsc-field textarea{resize:vertical;min-height:90px;line-height:1.6;}
+.gsc-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px;}
+.gsc-check{display:flex;align-items:center;gap:8px;font-size:13px;color:#0D0D0D;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:0;}
+.gsc-check input[type=checkbox]{width:15px;height:15px;flex-shrink:0;accent-color:#C8100E;cursor:pointer;padding:0;}
+.gsc-divider{grid-column:1/-1;height:1px;background:#EAEAEA;margin:2px 0;}
+.gsc-footer{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.gsc-note{font-size:11px;color:#aaa;}
+.gsc-submit{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;padding:13px 32px;background:#C8100E;color:#fff;border:none;border-radius:4px;cursor:pointer;transition:background .2s;}
+.gsc-submit:hover{background:#a00c0b;}
+.gsc-success{display:none;text-align:center;padding:40px 16px;}
+.gsc-success.show{display:block;}
+.gsc-success-icon{width:52px;height:52px;background:#fef0f0;border:2px solid #C8100E;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;}
+.gsc-success h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:#0D0D0D;margin-bottom:8px;}
+.gsc-success p{font-size:13px;color:#888;}
+@media(max-width:600px){
+  .gsc-modal-inner{padding:0 16px 24px;}
+  .gsc-grid{grid-template-columns:1fr;}
+  .gsc-full{grid-column:1;}
+  .gsc-checks{grid-template-columns:1fr;}
+  .gsc-footer{flex-direction:column;align-items:stretch;}
+}
 
 </style>
 </head>
@@ -3248,7 +3271,7 @@ Clinics"/>
 <div class="nav-ctas">
 <a href="tel:+1XXXXXXXXXX" class="btn-phone">
 Call Us</a>
-<a href="javascript:void(0)" data-gsc="consultation" class="btn-primary">Book Free Consult</a>
+<a href="#gsc-consult" class="btn-primary">Book Free Consult</a>
 </div>
 </nav>
 <!-- HERO -->
@@ -5799,7 +5822,7 @@ AR/604PFPt7JTMOelFFAGi67CF9KKKKAP//Z" alt="Grand Slam Clinics"/></div>
 <p class="hero-sub">Year-round elite coaching from former rep players and champions —
 built for serious athletes aged 8–18 across the Greater Toronto Area.</p>
 <div class="hero-ctas">
-<a href="javascript:void(0)" data-gsc="consultation" class="btn-hero-p">Book Free Consultation →</a>
+<a href="#gsc-consult" class="btn-hero-p">Book Free Consultation →</a>
 <a href="#coaches" class="btn-hero-s">Meet Our Coaches</a>
 </div>
 <div class="hero-stats">
@@ -36386,8 +36409,8 @@ player's development needs and goals.</p>
 (save $25)</li><li>10-session package — $600 (save $150)</li><li>Fully personalized
 plan</li><li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="javascript:void(0)" data-gsc="consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="javascript:void(0)" data-gsc="quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#gsc-consult" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#gsc-quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36400,8 +36423,8 @@ at a more accessible price point.</p>
 player</li><li>Great for friends &amp; teammates</li><li>Healthy competitive dynamic</li>
 <li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="javascript:void(0)" data-gsc="consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="javascript:void(0)" data-gsc="quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#gsc-consult" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#gsc-quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36415,8 +36438,8 @@ staff to strengthen the entire roster — any time of year.</p>
 packages</li><li>Quoted by roster size &amp; frequency</li><li>Complements existing coaching
 staff</li><li>Team-wide development focus</li></ul>
 <div class="pkg-cta-pair">
-<a href="javascript:void(0)" data-gsc="consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="javascript:void(0)" data-gsc="quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#gsc-consult" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#gsc-quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36563,7 +36586,7 @@ training plan for your player together.</p>
 <div class="contact-icon"> </div><div><div class="contact-label">Email</div><div
 class="contact-value">grandslamclinics@gmail.com</div></div>
 </a>
-<a href="javascript:void(0)" data-gsc="consultation" class="contact-method">
+<a href="#gsc-consult" class="contact-method">
 <div class="contact-icon"> </div><div><div class="contact-label">Online
 Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 </a>
@@ -36578,8 +36601,8 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 <p>Spots fill up fast. Book your free consultation today and lock in a plan before the
 season starts.</p>
 <div class="cta-btns">
-<a href="javascript:void(0)" data-gsc="consultation" class="btn-white">Book Free Consultation →</a>
-<a href="javascript:void(0)" data-gsc="quote" class="btn-woutline">Get a Custom Quote →</a>
+<a href="#gsc-consult" class="btn-white">Book Free Consultation →</a>
+<a href="#gsc-quote" class="btn-woutline">Get a Custom Quote →</a>
 </div>
 </div>
 <!-- FOOTER -->
@@ -39496,28 +39519,28 @@ moveTo(0, false);
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<!-- GSC CONTACT MODAL -->
-<div class="gsc-overlay" id="gscOverlay">
-  <div class="gsc-modal" role="dialog" aria-modal="true">
+
+
+
+
+
+<!-- GSC MODAL: gsc-consult -->
+<div class="gsc-overlay" id="gsc-consult">
+  <div class="gsc-modal" role="dialog">
     <div class="gsc-modal-close">
-      <button onclick="closeGsc()" aria-label="Close">&#x2715;</button>
+      <a href="#close-modal" aria-label="Close">&times;</a>
     </div>
     <div class="gsc-modal-inner">
       <div class="gsc-tabs">
-        <button class="gsc-tab-btn active" id="gscTabConsult" data-tab="consultation">&#128197;&nbsp; Book a Free Consultation</button>
-        <button class="gsc-tab-btn"        id="gscTabQuote" data-tab="quote">&#128203;&nbsp; Get a Custom Quote</button>
+        <a href="#gsc-consult" class="gsc-tab-btn active">&#128197;&nbsp; Book a Free Consultation</a>
+        <a href="#gsc-quote"   class="gsc-tab-btn ">&#128203;&nbsp; Get a Custom Quote</a>
       </div>
       <div class="gsc-card">
 
-        <!-- CONSULTATION -->
-        <div class="gsc-panel active" id="gscPanel-consultation" style="padding:0 32px 32px">
-          <div class="gsc-success" id="gscSuccess-consultation">
-            <div class="gsc-success-icon">&#x2713;</div>
-            <h3>You're All Set!</h3>
-            <p>We'll reach out within 24 hours to confirm your free consultation.</p>
-          </div>
-          <div id="gscForm-consultation">
-            <div class="gsc-panel-hdr" style="padding-top:28px">
+        <!-- CONSULTATION PANEL -->
+        <div class="gsc-panel active" id="gscPanel-consultation">
+          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
+            <div class="gsc-panel-hdr" style="padding-top:24px;">
               <h3>Book a Free Consultation</h3>
               <p>Tell us your goals and we'll set up a no-obligation call with a coach.</p>
             </div>
@@ -39539,7 +39562,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
                 </div>
                 <div class="gsc-field">
                   <label>Phone</label>
-                  <input type="tel" name="phone" placeholder="(555) 000-0000"/>
+                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
                 </div>
                 <div class="gsc-divider"></div>
                 <div class="gsc-field">
@@ -39571,12 +39594,12 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
                     <label class="gsc-check"><input type="checkbox" name="focus" value="Fielding"/> Fielding &amp; Defense</label>
                     <label class="gsc-check"><input type="checkbox" name="focus" value="Baserunning"/> Speed &amp; Baserunning</label>
                     <label class="gsc-check"><input type="checkbox" name="focus" value="Catching"/> Catching</label>
-                    <label class="gsc-check"><input type="checkbox" name="focus" value="Mental Game"/> Mental Game / IQ</label>
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Mental"/> Mental Game / IQ</label>
                   </div>
                 </div>
                 <div class="gsc-field gsc-full">
                   <label>Anything else we should know?</label>
-                  <textarea name="message" placeholder="Goals, current skill level, availability..."></textarea>
+                  <textarea name="message" placeholder="Goals, skill level, availability..."></textarea>
                 </div>
               </div>
               <div class="gsc-footer">
@@ -39587,17 +39610,12 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
           </div>
         </div>
 
-        <!-- QUOTE -->
-        <div class="gsc-panel" id="gscPanel-quote" style="padding:0 32px 32px">
-          <div class="gsc-success" id="gscSuccess-quote">
-            <div class="gsc-success-icon">&#x2713;</div>
-            <h3>Quote Request Received!</h3>
-            <p>We'll send a custom proposal within 24-48 hours.</p>
-          </div>
-          <div id="gscForm-quote">
-            <div class="gsc-panel-hdr" style="padding-top:28px">
+        <!-- QUOTE PANEL -->
+        <div class="gsc-panel " id="gscPanel-quote">
+          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
+            <div class="gsc-panel-hdr" style="padding-top:24px;">
               <h3>Get a Custom Quote</h3>
-              <p>Building a program for your team? We'll craft a tailored proposal.</p>
+              <p>Building a program for your team? We'll send a tailored proposal.</p>
             </div>
             <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
               <input type="hidden" name="_subject" value="Custom Quote - Grand Slam Clinics"/>
@@ -39613,7 +39631,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
                 </div>
                 <div class="gsc-field">
                   <label>Phone</label>
-                  <input type="tel" name="phone" placeholder="(555) 000-0000"/>
+                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
                 </div>
                 <div class="gsc-field">
                   <label>Team / Organization</label>
@@ -39646,10 +39664,10 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
                   <label>Type of Training Needed</label>
                   <div class="gsc-checks">
                     <label class="gsc-check"><input type="checkbox" name="training" value="Full Team"/> Full Team Training</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Position Clinics"/> Position-Specific Clinics</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Hitting Camp"/> Hitting Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Pitching Camp"/> Pitching Camp</label>
-                    <label class="gsc-check"><input type="checkbox" name="training" value="Fielding Camp"/> Fielding Camp</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Position"/> Position-Specific Clinics</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Hitting"/> Hitting Camp</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Pitching"/> Pitching Camp</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Fielding"/> Fielding Camp</label>
                     <label class="gsc-check"><input type="checkbox" name="training" value="Pre-Season"/> Pre-Season Prep</label>
                   </div>
                 </div>
@@ -39660,8 +39678,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
                     <option>Under $500</option>
                     <option>$500 - $1,500</option>
                     <option>$1,500 - $5,000</option>
-                    <option>$5,000 - $10,000</option>
-                    <option>$10,000+</option>
+                    <option>$5,000+</option>
                     <option>Flexible / Unknown</option>
                   </select>
                 </div>
@@ -39693,109 +39710,212 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </div>
   </div>
 </div>
-<!-- / GSC CONTACT MODAL -->
+
+<!-- GSC MODAL: gsc-quote -->
+<div class="gsc-overlay" id="gsc-quote">
+  <div class="gsc-modal" role="dialog">
+    <div class="gsc-modal-close">
+      <a href="#close-modal" aria-label="Close">&times;</a>
+    </div>
+    <div class="gsc-modal-inner">
+      <div class="gsc-tabs">
+        <a href="#gsc-consult" class="gsc-tab-btn ">&#128197;&nbsp; Book a Free Consultation</a>
+        <a href="#gsc-quote"   class="gsc-tab-btn active">&#128203;&nbsp; Get a Custom Quote</a>
+      </div>
+      <div class="gsc-card">
+
+        <!-- CONSULTATION PANEL -->
+        <div class="gsc-panel " id="gscPanel-consultation">
+          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
+            <div class="gsc-panel-hdr" style="padding-top:24px;">
+              <h3>Book a Free Consultation</h3>
+              <p>Tell us your goals and we'll set up a no-obligation call with a coach.</p>
+            </div>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <input type="hidden" name="_subject" value="Free Consultation - Grand Slam Clinics"/>
+              <input type="hidden" name="form_type" value="Free Consultation"/>
+              <div class="gsc-grid">
+                <div class="gsc-field">
+                  <label>First Name <span class="req">*</span></label>
+                  <input type="text" name="first_name" placeholder="Alex" required/>
+                </div>
+                <div class="gsc-field">
+                  <label>Last Name <span class="req">*</span></label>
+                  <input type="text" name="last_name" placeholder="Rivera" required/>
+                </div>
+                <div class="gsc-field">
+                  <label>Email <span class="req">*</span></label>
+                  <input type="email" name="email" placeholder="alex@example.com" required/>
+                </div>
+                <div class="gsc-field">
+                  <label>Phone</label>
+                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
+                </div>
+                <div class="gsc-divider"></div>
+                <div class="gsc-field">
+                  <label>Player Age / Level <span class="req">*</span></label>
+                  <select name="player_level" required>
+                    <option value="" disabled selected>Select a level...</option>
+                    <option>Youth (8-12)</option>
+                    <option>Middle School (13-14)</option>
+                    <option>High School (15-18)</option>
+                    <option>College</option>
+                    <option>Adult / Recreational</option>
+                  </select>
+                </div>
+                <div class="gsc-field">
+                  <label>Preferred Contact Time</label>
+                  <select name="preferred_time">
+                    <option value="" disabled selected>Select a time...</option>
+                    <option>Morning (8am - 12pm)</option>
+                    <option>Afternoon (12pm - 5pm)</option>
+                    <option>Evening (5pm - 8pm)</option>
+                    <option>Anytime</option>
+                  </select>
+                </div>
+                <div class="gsc-field gsc-full">
+                  <label>What do you want to work on? <span class="req">*</span></label>
+                  <div class="gsc-checks">
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Hitting"/> Hitting &amp; Bat Speed</label>
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Pitching"/> Pitching &amp; Mechanics</label>
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Fielding"/> Fielding &amp; Defense</label>
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Baserunning"/> Speed &amp; Baserunning</label>
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Catching"/> Catching</label>
+                    <label class="gsc-check"><input type="checkbox" name="focus" value="Mental"/> Mental Game / IQ</label>
+                  </div>
+                </div>
+                <div class="gsc-field gsc-full">
+                  <label>Anything else we should know?</label>
+                  <textarea name="message" placeholder="Goals, skill level, availability..."></textarea>
+                </div>
+              </div>
+              <div class="gsc-footer">
+                <p class="gsc-note">No spam. No obligation. Response within 24 hrs.</p>
+                <button type="submit" class="gsc-submit">Book My Free Call &rarr;</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- QUOTE PANEL -->
+        <div class="gsc-panel active" id="gscPanel-quote">
+          <div class="gsc-panel-inner" style="padding:0 32px 32px;">
+            <div class="gsc-panel-hdr" style="padding-top:24px;">
+              <h3>Get a Custom Quote</h3>
+              <p>Building a program for your team? We'll send a tailored proposal.</p>
+            </div>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <input type="hidden" name="_subject" value="Custom Quote - Grand Slam Clinics"/>
+              <input type="hidden" name="form_type" value="Custom Quote"/>
+              <div class="gsc-grid">
+                <div class="gsc-field">
+                  <label>Your Name <span class="req">*</span></label>
+                  <input type="text" name="name" placeholder="Coach Johnson" required/>
+                </div>
+                <div class="gsc-field">
+                  <label>Email <span class="req">*</span></label>
+                  <input type="email" name="email" placeholder="coach@team.com" required/>
+                </div>
+                <div class="gsc-field">
+                  <label>Phone</label>
+                  <input type="tel" name="phone" placeholder="(647) 000-0000"/>
+                </div>
+                <div class="gsc-field">
+                  <label>Team / Organization</label>
+                  <input type="text" name="org_name" placeholder="Riverside Mustangs"/>
+                </div>
+                <div class="gsc-divider"></div>
+                <div class="gsc-field">
+                  <label>Number of Players <span class="req">*</span></label>
+                  <select name="player_count" required>
+                    <option value="" disabled selected>Select range...</option>
+                    <option>1-5 players</option>
+                    <option>6-10 players</option>
+                    <option>11-20 players</option>
+                    <option>21-35 players</option>
+                    <option>36+ players</option>
+                  </select>
+                </div>
+                <div class="gsc-field">
+                  <label>Player Age / Level <span class="req">*</span></label>
+                  <select name="player_level" required>
+                    <option value="" disabled selected>Select a level...</option>
+                    <option>Youth (8-12)</option>
+                    <option>Middle School (13-14)</option>
+                    <option>High School (15-18)</option>
+                    <option>College</option>
+                    <option>Mixed Levels</option>
+                  </select>
+                </div>
+                <div class="gsc-field gsc-full">
+                  <label>Type of Training Needed</label>
+                  <div class="gsc-checks">
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Full Team"/> Full Team Training</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Position"/> Position-Specific Clinics</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Hitting"/> Hitting Camp</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Pitching"/> Pitching Camp</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Fielding"/> Fielding Camp</label>
+                    <label class="gsc-check"><input type="checkbox" name="training" value="Pre-Season"/> Pre-Season Prep</label>
+                  </div>
+                </div>
+                <div class="gsc-field">
+                  <label>Estimated Budget</label>
+                  <select name="budget">
+                    <option value="" disabled selected>Optional...</option>
+                    <option>Under $500</option>
+                    <option>$500 - $1,500</option>
+                    <option>$1,500 - $5,000</option>
+                    <option>$5,000+</option>
+                    <option>Flexible / Unknown</option>
+                  </select>
+                </div>
+                <div class="gsc-field">
+                  <label>Preferred Start Timeframe</label>
+                  <select name="timeframe">
+                    <option value="" disabled selected>Select...</option>
+                    <option>As soon as possible</option>
+                    <option>Within 1 month</option>
+                    <option>1-3 months</option>
+                    <option>3-6 months</option>
+                    <option>6+ months out</option>
+                  </select>
+                </div>
+                <div class="gsc-field gsc-full">
+                  <label>Describe What You're Looking For <span class="req">*</span></label>
+                  <textarea name="message" placeholder="Team goals, focus areas, scheduling needs..." required></textarea>
+                </div>
+              </div>
+              <div class="gsc-footer">
+                <p class="gsc-note">No obligation. Detailed proposal with pricing.</p>
+                <button type="submit" class="gsc-submit">Request My Quote &rarr;</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
-/* ── Grand Slam Clinics — Contact Modal ── */
-(function() {
-
-  /* Show/hide using display, not opacity — cannot silently fail */
-  function openGsc(tab) {
-    var el = document.getElementById('gscOverlay');
-    if (!el) { return; }
-    el.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    switchTab(tab === 'quote' ? 'quote' : 'consultation');
-  }
-
-  function closeGsc() {
-    var el = document.getElementById('gscOverlay');
-    if (el) { el.style.display = 'none'; }
-    document.body.style.overflow = '';
-  }
-
-  function switchTab(id) {
-    document.querySelectorAll('.gsc-tab-btn').forEach(function(b) {
-      b.classList.toggle('active', b.getAttribute('data-tab') === id);
-    });
-    document.querySelectorAll('.gsc-panel').forEach(function(p) {
-      p.classList.toggle('active', p.id === 'gscPanel-' + id);
-    });
-  }
-
-  function handleSubmit(e, id) {
-    e.preventDefault();
-    var form = e.target;
-    var btn  = form.querySelector('.gsc-submit');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { Accept: 'application/json' }
-    }).then(function(r) {
-      if (r.ok) {
-        var formDiv = document.getElementById('gscForm-' + id);
-        var success = document.getElementById('gscSuccess-' + id);
-        if (formDiv) formDiv.style.display = 'none';
-        if (success) success.style.display = 'block';
-      } else {
-        btn.textContent = 'Error — try again';
-        btn.disabled = false;
-      }
-    }).catch(function() {
-      btn.textContent = 'Network error — try again';
-      btn.disabled = false;
-    });
-  }
-
-  /* Event delegation — catches ALL [data-gsc] clicks anywhere on the page */
-  document.addEventListener('click', function(e) {
-    var btn = e.target.closest('[data-gsc]');
-    if (btn) {
-      e.preventDefault();
-      openGsc(btn.getAttribute('data-gsc'));
-      return;
-    }
-    /* Close button */
-    if (e.target.closest('.gsc-modal-close')) {
-      closeGsc();
-      return;
-    }
-    /* Backdrop click */
-    if (e.target.id === 'gscOverlay') {
-      closeGsc();
-    }
-  });
-
-  /* Escape key */
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeGsc(); }
-  });
-
-  /* Wire tab buttons via data-tab attribute */
-  document.addEventListener('click', function(e) {
-    var tabBtn = e.target.closest('.gsc-tab-btn[data-tab]');
-    if (tabBtn) { switchTab(tabBtn.getAttribute('data-tab')); }
-  });
-
-  /* Wire form submits */
-  document.addEventListener('submit', function(e) {
-    var form = e.target;
-    if (!form.closest('#gscOverlay')) return;
-    var panel = form.closest('.gsc-panel');
-    if (!panel) return;
-    var id = panel.id.replace('gscPanel-', '');
-    handleSubmit(e, id);
-  });
-
-  /* Start hidden */
-  document.addEventListener('DOMContentLoaded', function() {
-    var el = document.getElementById('gscOverlay');
-    if (el) { el.style.display = 'none'; }
-  });
-
-})();
+/* Form submission via fetch for better UX */
+document.addEventListener('submit', function(e) {
+  var form = e.target;
+  if (!form.action || !form.action.includes('formspree')) return;
+  e.preventDefault();
+  var btn = form.querySelector('.gsc-submit');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  fetch(form.action, {
+    method:'POST', body:new FormData(form),
+    headers:{Accept:'application/json'}
+  }).then(function(r){
+    if(r.ok){
+      form.innerHTML = '<div class="gsc-success show"><div class="gsc-success-icon">&#10003;</div><h3>Done!</h3><p>We will reach out within 24 hours.</p></div>';
+    } else { btn.textContent='Error - try again'; btn.disabled=false; }
+  }).catch(function(){ btn.textContent='Network error - try again'; btn.disabled=false; });
+});
 </script>
 
 </body>
