@@ -1,125 +1,815 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Free 15 Minute Consultation Form</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started — Grand Slam Clinics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
   <style>
-    .form-wrapper {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    :root {
+      --red: #d0021b;
+      --red-dark: #a30015;
+      --red-glow: rgba(208,2,27,0.25);
+      --navy: #09101f;
+      --navy-mid: #111827;
+      --navy-light: #1a2540;
+      --card: #141c2e;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f4ff;
+      --muted: #8a9ab8;
+      --gold: #e8b84b;
     }
-    .form-wrapper h1 { text-align:center; margin-bottom:20px; }
-    label { display:block; margin-top:15px; font-weight:600; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── STITCHING BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(208,2,27,0.12) 0%, transparent 70%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 30px,
+          rgba(255,255,255,0.012) 30px,
+          rgba(255,255,255,0.012) 31px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9,16,31,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      position: relative;
+    }
+
+    .logo-icon svg { width: 100%; height: 100%; }
+
+    .logo-text { line-height: 1; }
+    .logo-text .top {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--text);
+    }
+    .logo-text .sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--text); }
+    .back-link::before { content: '←'; font-size: 16px; }
+
+    /* ── HERO STRIP ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 64px 24px 0;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid rgba(208,2,27,0.4);
+      padding: 6px 16px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: var(--red); }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    /* ── TABS ── */
+    .tabs-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-bottom: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 16px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: all .25s;
+      position: relative;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform .25s;
+    }
+
+    .tab-btn.active {
+      color: var(--text);
+      background: rgba(208,2,27,0.08);
+    }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-btn:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.04); }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      max-width: 780px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .form-panel {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 44px 48px 48px;
+      animation: fadeUp .3s ease;
+    }
+
+    .form-panel.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .panel-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: 1.5px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .panel-header p {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ── GRID ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 24px;
+    }
+    .col-full { grid-column: 1 / -1; }
+
+    /* ── FIELDS ── */
+    .field { display: flex; flex-direction: column; gap: 8px; }
+
+    label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .req { color: var(--red); margin-left: 2px; }
+
     input, select, textarea {
-      width:100%; padding:10px; margin-top:6px;
-      border:1px solid #ccc; border-radius:6px; font-size:16px;
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 13px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      -webkit-appearance: none;
     }
-    button {
-      margin-top:20px; background: var(--red); color: var(--white);
-      border:none; padding:12px 20px; border-radius:6px;
-      font-size:16px; font-weight:700; cursor:pointer;
+
+    input::placeholder, textarea::placeholder { color: rgba(138,154,184,0.5); }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(208,2,27,0.6);
+      box-shadow: 0 0 0 3px rgba(208,2,27,0.12);
     }
-    button:hover { background: var(--red-dark); }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9ab8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    select option { background: var(--navy-mid); color: var(--text); }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    /* ── CHECKBOX GROUP ── */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text);
+    }
+
+    .check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--red);
+      padding: 0;
+      cursor: pointer;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: var(--border);
+      margin: 8px 0;
+    }
+
+    /* ── SUBMIT ── */
+    .form-footer {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .form-note strong { color: var(--text); font-weight: 500; }
+
+    .btn-submit {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 2.5px;
+      padding: 16px 44px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s, transform .15s;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    }
+
+    .btn-submit:hover {
+      background: var(--red-dark);
+      box-shadow: 0 4px 24px var(--red-glow);
+      transform: translateY(-1px);
+    }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* ── SUCCESS STATE ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+    }
+    .success-msg.show { display: block; }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(208,2,27,0.12);
+      border: 2px solid rgba(208,2,27,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .success-icon svg { width: 36px; height: 36px; stroke: var(--red); }
+
+    .success-msg h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 2px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .success-msg p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 380px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .info-item {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 24px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .info-item:first-child { border-radius: 6px 0 0 6px; }
+    .info-item:last-child  { border-radius: 0 6px 6px 0; }
+
+    .info-icon {
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .info-text span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header { padding: 16px 20px; }
+      .form-panel { padding: 28px 20px 32px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .col-full { grid-column: 1; }
+      .checkbox-group { grid-template-columns: 1fr; }
+      .form-footer { flex-direction: column; align-items: stretch; }
+      .btn-submit { text-align: center; }
+      .info-strip { grid-template-columns: 1fr; }
+      .info-item:first-child { border-radius: 6px 6px 0 0; }
+      .info-item:last-child  { border-radius: 0 0 6px 6px; }
+    }
   </style>
-
-<!-- Favicon & app icons -->
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<!-- optional legacy ICO (browsers will use pngs first) -->
-<link rel="shortcut icon" href="favicon.ico">
-
-<!-- optional manifest (if you created site.webmanifest) -->
-<link rel="manifest" href="site.webmanifest">
-
-<!-- tile color / theme -->
-<meta name="msapplication-TileColor" content="#1C1C1C">
-<meta name="theme-color" content="#E53935">
 </head>
 <body>
+
+<!-- HEADER -->
 <header>
-  <a href="index.html" class="logo">
-    <img src="gslogo.png" alt="Grand Slam Clinics logo" style="height:100px">
+  <a href="https://grandslamclinics.com" class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="20" stroke="#d0021b" stroke-width="2"/>
+        <path d="M10 22 Q16 16 22 22 Q28 28 34 22" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M10 22 Q16 28 22 22 Q28 16 34 22" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="22" cy="22" r="2.5" fill="#d0021b"/>
+        <line x1="10" y1="20.5" x2="12" y2="22" stroke="#d0021b" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="10" y1="23.5" x2="12" y2="22" stroke="#d0021b" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="34" y1="20.5" x2="32" y2="22" stroke="#d0021b" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="34" y1="23.5" x2="32" y2="22" stroke="#d0021b" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <div class="top">Grand Slam Clinics</div>
+      <div class="sub">Elite Baseball Coaching</div>
+    </div>
   </a>
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About / Our Coaches</a>
-    <a href="packages.html">Packages / Prices</a>
-    <a href="faq.html">FAQs</a>
-  </nav>
+  <a href="#" onclick="if(window.parent!==window){window.parent.closeForm();}else{window.location='https://grandslamclinics.com';}return false;" class="back-link">Back to Home</a>
 </header>
 
-<main class="form-wrapper">
-  <h1>Free 15 Minute Consultation Form</h1>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Take the First Step</div>
+  <h1>Let's Build Your<br><span>Game Plan</span></h1>
+  <p>Whether you're looking for a one-on-one session or a custom program for your team, we'll get you squared away.</p>
+</div>
 
-  <!-- Replace the form action URL with your own Formspree endpoint (next step) -->
-  <form action="https://formspree.io/f/mwprkojp" method="POST">
-    <label>Full Name*:
-      <input type="text" name="Full Name" required>
-    </label>
-
-    <label>Email*:
-      <input type="email" name="Email" required>
-    </label>
-
-    <label>Are you a Player, Parent or Coach?*:
-      <select name="Role" required>
-        <option value="">Select one</option>
-        <option>Player</option>
-        <option>Parent</option>
-        <option>Coach</option>
-      </select>
-    </label>
-
-    <label>Private, Semi-Private or Team Coaching?*:
-      <select name="Coaching Type" required>
-        <option value="">Select one</option>
-        <option>Private</option>
-        <option>Semi-Private</option>
-        <option>Team</option>
-      </select>
-    </label>
-
-    <label>Player age and level of baseball?*:
-      <input type="text" name="Player Age & Level" required>
-    </label>
-
-    <label>Preferred date and time for the call? (3 availabilities)*:
-      <input type="text" name="Preferred Date & Time" placeholder="e.g. Oct 1 - 3pm, Oct 6 - 5pm, Oct 23 - 7pm" required>
-    </label>
-
-    <label>Message (optional):
-      <textarea name="Message" rows="4"></textarea>
-    </label>
-
-    <button type="submit">Submit</button>
-  </form>
-</main>
-
-<footer>
-  <div class="inner">
-    <p>&copy; <span>2024</span> Grand Slam Co. | grandslamclinics@gmail.com</p>
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-item">
+    <div class="info-icon">⚡</div>
+    <div class="info-text">
+      <strong>Fast Response</strong>
+      <span>We reply within 24 hours, usually much sooner.</span>
+    </div>
   </div>
-<style>
-  footer {
-  background: var(--black);   /* black background */
-  color: var(--white);        /* white text */
-  border-top: none;           /* remove the old light border */
-  text-align: center;
-  padding: 20px 0;
-}
+  <div class="info-item">
+    <div class="info-icon">🎯</div>
+    <div class="info-text">
+      <strong>Custom Fit</strong>
+      <span>Every program is built around your specific goals.</span>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">🏆</div>
+    <div class="info-text">
+      <strong>Elite Coaches</strong>
+      <span>Experienced at every level from youth to pro.</span>
+    </div>
+  </div>
+</div>
 
-footer p {
-  color: var(--white);        /* ensure paragraph text is white */
-  margin: 6px 0;
-}
-</style>
-</footer>
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('consultation', this)">
+      📅 &nbsp;Book a Free Consultation
+    </button>
+    <button class="tab-btn" onclick="switchTab('quote', this)">
+      📋 &nbsp;Get a Custom Quote
+    </button>
+  </div>
+</div>
+
+<!-- FORMS -->
+<div class="form-card">
+
+  <!-- ── CONSULTATION FORM ── -->
+  <div class="form-panel active" id="panel-consultation">
+    <div class="panel-header">
+      <h2>Book a Free Consultation</h2>
+      <p>Tell us about your goals and we'll set up a no-obligation call with one of our coaches.</p>
+    </div>
+
+    <div id="success-consultation" class="success-msg">
+      <div class="success-icon">
+        <svg fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="6,18 14,26 30,10" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>You're All Set!</h3>
+      <p>We've received your request and will reach out within 24 hours to confirm your free consultation.</p>
+    </div>
+
+    <form id="form-consultation"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          onsubmit="handleSubmit(event, 'consultation')">
+
+      <input type="hidden" name="_subject" value="New Consultation Request — Grand Slam Clinics" />
+      <input type="hidden" name="form_type" value="Free Consultation" />
+
+      <div class="form-grid">
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="first_name" placeholder="Alex" required />
+        </div>
+        <div class="field">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" name="last_name" placeholder="Rivera" required />
+        </div>
+
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="alex@example.com" required />
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="(555) 000-0000" />
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Player Age / Level <span class="req">*</span></label>
+          <select name="player_level" required>
+            <option value="" disabled selected>Select a level…</option>
+            <option>Youth (8–12)</option>
+            <option>Middle School (13–14)</option>
+            <option>High School (15–18)</option>
+            <option>College</option>
+            <option>Adult / Recreational</option>
+            <option>Professional / Semi-Pro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferred Contact Time</label>
+          <select name="preferred_time">
+            <option value="" disabled selected>Select a time…</option>
+            <option>Morning (8am – 12pm)</option>
+            <option>Afternoon (12pm – 5pm)</option>
+            <option>Evening (5pm – 8pm)</option>
+            <option>Anytime</option>
+          </select>
+        </div>
+
+        <div class="field col-full">
+          <label>What do you want to work on? <span class="req">*</span></label>
+          <div class="checkbox-group">
+            <label class="check-label"><input type="checkbox" name="focus[]" value="Hitting" /> Hitting & Bat Speed</label>
+            <label class="check-label"><input type="checkbox" name="focus[]" value="Pitching" /> Pitching & Mechanics</label>
+            <label class="check-label"><input type="checkbox" name="focus[]" value="Fielding" /> Fielding & Defense</label>
+            <label class="check-label"><input type="checkbox" name="focus[]" value="Baserunning" /> Speed & Baserunning</label>
+            <label class="check-label"><input type="checkbox" name="focus[]" value="Catching" /> Catching</label>
+            <label class="check-label"><input type="checkbox" name="focus[]" value="Mental Game" /> Mental Game / IQ</label>
+          </div>
+        </div>
+
+        <div class="field col-full">
+          <label>Anything else we should know?</label>
+          <textarea name="message" placeholder="Share your goals, current skill level, availability, or anything else that helps us prepare for your call…"></textarea>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <p class="form-note">By submitting, you agree to be contacted by Grand Slam Clinics.<br><strong>No spam. Ever.</strong></p>
+        <button type="submit" class="btn-submit">Book My Free Call →</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ── QUOTE FORM ── -->
+  <div class="form-panel" id="panel-quote">
+    <div class="panel-header">
+      <h2>Get a Custom Quote</h2>
+      <p>Building a program for your team or organization? Give us the details and we'll craft a tailored proposal.</p>
+    </div>
+
+    <div id="success-quote" class="success-msg">
+      <div class="success-icon">
+        <svg fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="6,18 14,26 30,10" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Quote Request Received!</h3>
+      <p>Thanks for reaching out. We'll review your details and send over a custom proposal within 24–48 hours.</p>
+    </div>
+
+    <form id="form-quote"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          onsubmit="handleSubmit(event, 'quote')">
+
+      <input type="hidden" name="_subject" value="Custom Quote Request — Grand Slam Clinics" />
+      <input type="hidden" name="form_type" value="Custom Quote" />
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Your Name <span class="req">*</span></label>
+          <input type="text" name="name" placeholder="Coach Johnson" required />
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="coach@teamname.com" required />
+        </div>
+
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="(555) 000-0000" />
+        </div>
+        <div class="field">
+          <label>Team / Organization Name</label>
+          <input type="text" name="org_name" placeholder="Riverside Mustangs" />
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field">
+          <label>Number of Players <span class="req">*</span></label>
+          <select name="player_count" required>
+            <option value="" disabled selected>Select range…</option>
+            <option>1–5 players</option>
+            <option>6–10 players</option>
+            <option>11–20 players</option>
+            <option>21–35 players</option>
+            <option>36+ players</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Player Age / Level <span class="req">*</span></label>
+          <select name="player_level" required>
+            <option value="" disabled selected>Select a level…</option>
+            <option>Youth (8–12)</option>
+            <option>Middle School (13–14)</option>
+            <option>High School (15–18)</option>
+            <option>College</option>
+            <option>Adult / Recreational</option>
+            <option>Mixed Levels</option>
+          </select>
+        </div>
+
+        <div class="field col-full">
+          <label>Type of Training Needed <span class="req">*</span></label>
+          <div class="checkbox-group">
+            <label class="check-label"><input type="checkbox" name="training[]" value="Full Team Training" /> Full Team Training</label>
+            <label class="check-label"><input type="checkbox" name="training[]" value="Position-Specific" /> Position-Specific Clinics</label>
+            <label class="check-label"><input type="checkbox" name="training[]" value="Hitting Camp" /> Hitting Camp</label>
+            <label class="check-label"><input type="checkbox" name="training[]" value="Pitching Camp" /> Pitching Camp</label>
+            <label class="check-label"><input type="checkbox" name="training[]" value="Fielding Camp" /> Fielding Camp</label>
+            <label class="check-label"><input type="checkbox" name="training[]" value="Pre-Season Prep" /> Pre-Season Prep</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Estimated Budget</label>
+          <select name="budget">
+            <option value="" disabled selected>Select range (optional)…</option>
+            <option>Under $500</option>
+            <option>$500 – $1,500</option>
+            <option>$1,500 – $5,000</option>
+            <option>$5,000 – $10,000</option>
+            <option>$10,000+</option>
+            <option>Flexible / Unknown</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferred Start Timeframe</label>
+          <select name="timeframe">
+            <option value="" disabled selected>Select…</option>
+            <option>As soon as possible</option>
+            <option>Within 1 month</option>
+            <option>1–3 months</option>
+            <option>3–6 months</option>
+            <option>6+ months out</option>
+          </select>
+        </div>
+
+        <div class="field col-full">
+          <label>Describe What You're Looking For <span class="req">*</span></label>
+          <textarea name="message" placeholder="Tell us about your team, your goals for the season, any specific areas you want to focus on, location preferences, scheduling needs, etc." required></textarea>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <p class="form-note">We'll send a detailed proposal with pricing.<br><strong>No obligation whatsoever.</strong></p>
+        <button type="submit" class="btn-submit">Request My Quote →</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  async function handleSubmit(e, id) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-' + id).classList.add('show');
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    }
+  }
+
+  // Auto-switch to quote tab if URL has ?quote in it
+  var p = new URLSearchParams(location.search);
+  if (p.has('quote')) {
+    switchTab('quote', document.querySelectorAll('.tab-btn')[1]);
+  }
+</script>
 </body>
 </html>
