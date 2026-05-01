@@ -429,8 +429,8 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
 }
 
 /* == GSC CONTACT MODAL == */
-.gsc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
-.gsc-overlay.open{opacity:1;pointer-events:all}
+.gsc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;}
+.gsc-overlay.visible{display:flex;}
 .gsc-modal{background:#fff;border-radius:10px;width:100%;max-width:760px;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .28s}
 .gsc-overlay.open .gsc-modal{transform:translateY(0)}
 .gsc-modal-close{position:sticky;top:0;display:flex;justify-content:flex-end;padding:14px 16px 0;background:#fff;z-index:1}
@@ -3248,7 +3248,7 @@ Clinics"/>
 <div class="nav-ctas">
 <a href="tel:+1XXXXXXXXXX" class="btn-phone">
 Call Us</a>
-<a href="#" onclick="openGsc('consultation');return false;" class="btn-primary">Book Free Consult</a>
+<a href="javascript:void(0)" data-gsc="consultation" class="btn-primary">Book Free Consult</a>
 </div>
 </nav>
 <!-- HERO -->
@@ -5799,7 +5799,7 @@ AR/604PFPt7JTMOelFFAGi67CF9KKKKAP//Z" alt="Grand Slam Clinics"/></div>
 <p class="hero-sub">Year-round elite coaching from former rep players and champions —
 built for serious athletes aged 8–18 across the Greater Toronto Area.</p>
 <div class="hero-ctas">
-<a href="#" onclick="openGsc('consultation');return false;" class="btn-hero-p">Book Free Consultation →</a>
+<a href="javascript:void(0)" data-gsc="consultation" class="btn-hero-p">Book Free Consultation →</a>
 <a href="#coaches" class="btn-hero-s">Meet Our Coaches</a>
 </div>
 <div class="hero-stats">
@@ -36386,8 +36386,8 @@ player's development needs and goals.</p>
 (save $25)</li><li>10-session package — $600 (save $150)</li><li>Fully personalized
 plan</li><li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="#" onclick="openGsc('consultation');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#" onclick="openGsc('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="javascript:void(0)" data-gsc="consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="javascript:void(0)" data-gsc="quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36400,8 +36400,8 @@ at a more accessible price point.</p>
 player</li><li>Great for friends &amp; teammates</li><li>Healthy competitive dynamic</li>
 <li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="#" onclick="openGsc('consultation');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#" onclick="openGsc('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="javascript:void(0)" data-gsc="consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="javascript:void(0)" data-gsc="quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36415,8 +36415,8 @@ staff to strengthen the entire roster — any time of year.</p>
 packages</li><li>Quoted by roster size &amp; frequency</li><li>Complements existing coaching
 staff</li><li>Team-wide development focus</li></ul>
 <div class="pkg-cta-pair">
-<a href="#" onclick="openGsc('consultation');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#" onclick="openGsc('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="javascript:void(0)" data-gsc="consultation" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="javascript:void(0)" data-gsc="quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36563,7 +36563,7 @@ training plan for your player together.</p>
 <div class="contact-icon"> </div><div><div class="contact-label">Email</div><div
 class="contact-value">grandslamclinics@gmail.com</div></div>
 </a>
-<a href="#" onclick="openGsc('consultation');return false;" class="contact-method">
+<a href="javascript:void(0)" data-gsc="consultation" class="contact-method">
 <div class="contact-icon"> </div><div><div class="contact-label">Online
 Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 </a>
@@ -36578,8 +36578,8 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 <p>Spots fill up fast. Book your free consultation today and lock in a plan before the
 season starts.</p>
 <div class="cta-btns">
-<a href="#" onclick="openGsc('consultation');return false;" class="btn-white">Book Free Consultation →</a>
-<a href="#" onclick="openGsc('quote');return false;" class="btn-woutline">Get a Custom Quote →</a>
+<a href="javascript:void(0)" data-gsc="consultation" class="btn-white">Book Free Consultation →</a>
+<a href="javascript:void(0)" data-gsc="quote" class="btn-woutline">Get a Custom Quote →</a>
 </div>
 </div>
 <!-- FOOTER -->
@@ -39504,8 +39504,8 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </div>
     <div class="gsc-modal-inner">
       <div class="gsc-tabs">
-        <button class="gsc-tab-btn active" id="gscTabConsult" onclick="gscTab('consultation',this)">&#128197;&nbsp; Book a Free Consultation</button>
-        <button class="gsc-tab-btn"        id="gscTabQuote"   onclick="gscTab('quote',this)">&#128203;&nbsp; Get a Custom Quote</button>
+        <button class="gsc-tab-btn active" id="gscTabConsult" data-tab="consultation">&#128197;&nbsp; Book a Free Consultation</button>
+        <button class="gsc-tab-btn"        id="gscTabQuote" data-tab="quote">&#128203;&nbsp; Get a Custom Quote</button>
       </div>
       <div class="gsc-card">
 
@@ -39521,7 +39521,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
               <h3>Book a Free Consultation</h3>
               <p>Tell us your goals and we'll set up a no-obligation call with a coach.</p>
             </div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="gscSubmit(event,'consultation')">
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
               <input type="hidden" name="_subject" value="Free Consultation - Grand Slam Clinics"/>
               <input type="hidden" name="form_type" value="Free Consultation"/>
               <div class="gsc-grid">
@@ -39599,7 +39599,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
               <h3>Get a Custom Quote</h3>
               <p>Building a program for your team? We'll craft a tailored proposal.</p>
             </div>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="gscSubmit(event,'quote')">
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
               <input type="hidden" name="_subject" value="Custom Quote - Grand Slam Clinics"/>
               <input type="hidden" name="form_type" value="Custom Quote"/>
               <div class="gsc-grid">
@@ -39696,75 +39696,106 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 <!-- / GSC CONTACT MODAL -->
 
 <script>
-/* Grand Slam Clinics — Contact Modal */
-function openGsc(tab) {
-  var overlay = document.getElementById('gscOverlay');
-  if (!overlay) return;
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (tab === 'quote') {
-    gscTab('quote', document.getElementById('gscTabQuote'));
-  } else {
-    gscTab('consultation', document.getElementById('gscTabConsult'));
+/* ── Grand Slam Clinics — Contact Modal ── */
+(function() {
+
+  /* Show/hide using display, not opacity — cannot silently fail */
+  function openGsc(tab) {
+    var el = document.getElementById('gscOverlay');
+    if (!el) { return; }
+    el.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    switchTab(tab === 'quote' ? 'quote' : 'consultation');
   }
-}
 
-function closeGsc() {
-  var overlay = document.getElementById('gscOverlay');
-  if (overlay) overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
+  function closeGsc() {
+    var el = document.getElementById('gscOverlay');
+    if (el) { el.style.display = 'none'; }
+    document.body.style.overflow = '';
+  }
 
-function gscTab(id, btn) {
-  document.querySelectorAll('.gsc-tab-btn').forEach(function(b) {
-    b.classList.remove('active');
-  });
-  document.querySelectorAll('.gsc-panel').forEach(function(p) {
-    p.classList.remove('active');
-  });
-  if (btn) btn.classList.add('active');
-  var panel = document.getElementById('gscPanel-' + id);
-  if (panel) panel.classList.add('active');
-}
-
-function gscSubmit(e, id) {
-  e.preventDefault();
-  var form = e.target;
-  var btn = form.querySelector('.gsc-submit');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { Accept: 'application/json' }
-  }).then(function(r) {
-    if (r.ok) {
-      var formDiv = document.getElementById('gscForm-' + id);
-      var success = document.getElementById('gscSuccess-' + id);
-      if (formDiv) formDiv.style.display = 'none';
-      if (success) success.classList.add('show');
-    } else {
-      btn.textContent = 'Something went wrong - try again';
-      btn.disabled = false;
-    }
-  }).catch(function() {
-    btn.textContent = 'Network error - try again';
-    btn.disabled = false;
-  });
-}
-
-/* Backdrop + keyboard close */
-document.addEventListener('DOMContentLoaded', function() {
-  var overlay = document.getElementById('gscOverlay');
-  if (overlay) {
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) closeGsc();
+  function switchTab(id) {
+    document.querySelectorAll('.gsc-tab-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-tab') === id);
+    });
+    document.querySelectorAll('.gsc-panel').forEach(function(p) {
+      p.classList.toggle('active', p.id === 'gscPanel-' + id);
     });
   }
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeGsc();
-});
+
+  function handleSubmit(e, id) {
+    e.preventDefault();
+    var form = e.target;
+    var btn  = form.querySelector('.gsc-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        var formDiv = document.getElementById('gscForm-' + id);
+        var success = document.getElementById('gscSuccess-' + id);
+        if (formDiv) formDiv.style.display = 'none';
+        if (success) success.style.display = 'block';
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    }).catch(function() {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    });
+  }
+
+  /* Event delegation — catches ALL [data-gsc] clicks anywhere on the page */
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-gsc]');
+    if (btn) {
+      e.preventDefault();
+      openGsc(btn.getAttribute('data-gsc'));
+      return;
+    }
+    /* Close button */
+    if (e.target.closest('.gsc-modal-close')) {
+      closeGsc();
+      return;
+    }
+    /* Backdrop click */
+    if (e.target.id === 'gscOverlay') {
+      closeGsc();
+    }
+  });
+
+  /* Escape key */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeGsc(); }
+  });
+
+  /* Wire tab buttons via data-tab attribute */
+  document.addEventListener('click', function(e) {
+    var tabBtn = e.target.closest('.gsc-tab-btn[data-tab]');
+    if (tabBtn) { switchTab(tabBtn.getAttribute('data-tab')); }
+  });
+
+  /* Wire form submits */
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    if (!form.closest('#gscOverlay')) return;
+    var panel = form.closest('.gsc-panel');
+    if (!panel) return;
+    var id = panel.id.replace('gscPanel-', '');
+    handleSubmit(e, id);
+  });
+
+  /* Start hidden */
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('gscOverlay');
+    if (el) { el.style.display = 'none'; }
+  });
+
+})();
 </script>
 
 </body>
