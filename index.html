@@ -440,7 +440,7 @@ section, .coaches, .why, .programs { padding: 64px 4%; }
   justify-content:center;
   padding:16px;
 }
-.gsc-overlay:target{display:flex;}
+.gsc-overlay:target{outline:none;}
 .gsc-modal{
   background:#fff;
   border-radius:10px;
@@ -3269,7 +3269,7 @@ Clinics"/>
 <a href="#faq">FAQ</a>
 </div>
 <div class="nav-ctas">
-<a href="tel:+1XXXXXXXXXX" class="btn-phone">
+<a href="tel:+14167055541" class="btn-phone">
 Call Us</a>
 <a href="#gsc-consult" class="btn-primary">Book Free Consult</a>
 </div>
@@ -36578,9 +36578,9 @@ booked or charged.</div>
 <h3>Ready to Get<br/>Started?</h3>
 <p>Book a free consultation — no commitment, no pressure. We'll build the right
 training plan for your player together.</p>
-<a href="tel:+1XXXXXXXXXX" class="contact-method">
+<a href="tel:+14167055541" class="contact-method">
 <div class="contact-icon"> </div><div><div class="contact-label">Call Us</div>
-<div class="contact-value">(XXX) XXX-XXXX</div></div>
+<div class="contact-value">(416) 705-5541</div></div>
 </a>
 <a href="mailto:grandslamclinics@gmail.com" class="contact-method">
 <div class="contact-icon"> </div><div><div class="contact-label">Email</div><div
@@ -39389,7 +39389,7 @@ href="#">FAQs</a></li><li><a href="#">Contact</a></li></ul>
 <div class="footer-col">
 <h5>Contact</h5>
 <ul><li><a href="mailto:grandslamclinics@gmail.com">grandslamclinics@gmail.com</a>
-</li><li><a href="#">(XXX) XXX-XXXX</a></li><li><a href="#">Greater Toronto Area, ON</a>
+</li><li><a href="#">(416) 705-5541</a></li><li><a href="#">Greater Toronto Area, ON</a>
 </li></ul>
 </div>
 </div>
@@ -39525,7 +39525,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 
 <!-- GSC MODAL: gsc-consult -->
-<div class="gsc-overlay" id="gsc-consult">
+<div class="gsc-overlay" id="gsc-consult" style="display:none;">
   <div class="gsc-modal" role="dialog">
     <div class="gsc-modal-close">
       <a href="#close-modal" aria-label="Close">&times;</a>
@@ -39712,7 +39712,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </div>
 
 <!-- GSC MODAL: gsc-quote -->
-<div class="gsc-overlay" id="gsc-quote">
+<div class="gsc-overlay" id="gsc-quote" style="display:none;">
   <div class="gsc-modal" role="dialog">
     <div class="gsc-modal-close">
       <a href="#close-modal" aria-label="Close">&times;</a>
@@ -39899,25 +39899,84 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </div>
 
 
-<script>
-/* Form submission via fetch for better UX */
-document.addEventListener('submit', function(e) {
-  var form = e.target;
-  if (!form.action || !form.action.includes('formspree')) return;
-  e.preventDefault();
-  var btn = form.querySelector('.gsc-submit');
-  btn.textContent = 'Sending...'; btn.disabled = true;
-  fetch(form.action, {
-    method:'POST', body:new FormData(form),
-    headers:{Accept:'application/json'}
-  }).then(function(r){
-    if(r.ok){
-      form.innerHTML = '<div class="gsc-success show"><div class="gsc-success-icon">&#10003;</div><h3>Done!</h3><p>We will reach out within 24 hours.</p></div>';
-    } else { btn.textContent='Error - try again'; btn.disabled=false; }
-  }).catch(function(){ btn.textContent='Network error - try again'; btn.disabled=false; });
-});
-</script>
 
+
+<script>
+/* Grand Slam Clinics - Modal */
+(function() {
+
+  function showOverlay(id) {
+    var all = document.getElementsByClassName('gsc-overlay');
+    for (var i = 0; i < all.length; i++) {
+      all[i].style.cssText = 'display:none !important';
+    }
+    if (!id) { document.body.style.overflow = ''; return; }
+    var el = document.getElementById(id);
+    if (!el) { document.body.style.overflow = ''; return; }
+    el.style.cssText = 'display:flex !important;position:fixed !important;top:0 !important;left:0 !important;right:0 !important;bottom:0 !important;width:100% !important;height:100% !important;z-index:99999 !important;background:rgba(0,0,0,0.78) !important;align-items:center !important;justify-content:center !important;padding:16px !important;box-sizing:border-box !important';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function handleHash() {
+    var h = window.location.hash;
+    if (h === '#gsc-consult') showOverlay('gsc-consult');
+    else if (h === '#gsc-quote') showOverlay('gsc-quote');
+    else showOverlay(null);
+  }
+
+  window.addEventListener('hashchange', handleHash);
+  window.addEventListener('load', handleHash);
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest && e.target.closest('.gsc-modal-close')) {
+      history.replaceState(null, '', window.location.pathname);
+      showOverlay(null);
+      e.preventDefault();
+      return;
+    }
+    if (e.target.classList && e.target.classList.contains('gsc-overlay')) {
+      history.replaceState(null, '', window.location.pathname);
+      showOverlay(null);
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      history.replaceState(null, '', window.location.pathname);
+      showOverlay(null);
+    }
+  });
+
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    if (!form.closest || !form.closest('.gsc-overlay')) return;
+    e.preventDefault();
+    var btn = form.querySelector('.gsc-submit');
+    if (!btn) return;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        var done = document.createElement('div');
+        done.style.cssText = 'text-align:center;padding:50px 20px;';
+        done.innerHTML = '<div style="width:52px;height:52px;border:2px solid #C8100E;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;">&#10003;</div><p style="font-size:18px;font-weight:700;color:#0D0D0D;margin-bottom:6px;">Done!</p><p style="font-size:13px;color:#888;">We will reach out within 24 hours.</p>';
+        form.parentNode.replaceChild(done, form);
+      } else {
+        btn.textContent = 'Error - try again';
+        btn.disabled = false;
+      }
+    }).catch(function() {
+      btn.textContent = 'Network error - try again';
+      btn.disabled = false;
+    });
+  });
+
+})();
+</script>
 </body>
 </html>
 
