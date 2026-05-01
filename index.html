@@ -3698,7 +3698,7 @@ Clinics"/>
 <div class="nav-ctas">
 <a href="tel:+14167055541" class="btn-phone">
 Call Us</a>
-<a href="#gsc-consult" class="btn-primary">Book Free Consult</a>
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="btn-primary">Book Free Consult</a>
 </div>
 </nav>
 <!-- HERO -->
@@ -6249,7 +6249,7 @@ AR/604PFPt7JTMOelFFAGi67CF9KKKKAP//Z" alt="Grand Slam Clinics"/></div>
 <p class="hero-sub">Year-round elite coaching from former rep players and champions —
 built for serious athletes aged 8–18 across the Greater Toronto Area.</p>
 <div class="hero-ctas">
-<a href="#gsc-consult" class="btn-hero-p">Book Free Consultation →</a>
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="btn-hero-p">Book Free Consultation →</a>
 <a href="#coaches" class="btn-hero-s">Meet Our Coaches</a>
 </div>
 <div class="hero-stats">
@@ -36836,8 +36836,8 @@ player's development needs and goals.</p>
 (save $25)</li><li>10-session package — $600 (save $150)</li><li>Fully personalized
 plan</li><li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="#gsc-consult" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#gsc-quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="javascript:void(0)" onclick="openGscModal('quote')" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36850,8 +36850,8 @@ at a more accessible price point.</p>
 player</li><li>Great for friends &amp; teammates</li><li>Healthy competitive dynamic</li>
 <li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="#gsc-consult" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#gsc-quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="javascript:void(0)" onclick="openGscModal('quote')" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36865,8 +36865,8 @@ staff to strengthen the entire roster — any time of year.</p>
 packages</li><li>Quoted by roster size &amp; frequency</li><li>Complements existing coaching
 staff</li><li>Team-wide development focus</li></ul>
 <div class="pkg-cta-pair">
-<a href="#gsc-consult" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#gsc-quote" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="javascript:void(0)" onclick="openGscModal('quote')" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -37013,7 +37013,7 @@ training plan for your player together.</p>
 <div class="contact-icon"> </div><div><div class="contact-label">Email</div><div
 class="contact-value">grandslamclinics@gmail.com</div></div>
 </a>
-<a href="#gsc-consult" class="contact-method">
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="contact-method">
 <div class="contact-icon"> </div><div><div class="contact-label">Online
 Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 </a>
@@ -37028,8 +37028,8 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 <p>Spots fill up fast. Book your free consultation today and lock in a plan before the
 season starts.</p>
 <div class="cta-btns">
-<a href="#gsc-consult" class="btn-white">Book Free Consultation →</a>
-<a href="#gsc-quote" class="btn-woutline">Get a Custom Quote →</a>
+<a href="javascript:void(0)" onclick="openGscModal('consultation')" class="btn-white">Book Free Consultation →</a>
+<a href="javascript:void(0)" onclick="openGscModal('quote')" class="btn-woutline">Get a Custom Quote →</a>
 </div>
 </div>
 <!-- FOOTER -->
@@ -39953,8 +39953,8 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     <div class="gsc-modal-inner">
       <div class="gsc-tabs">
-        <a href="#gsc-consult" class="gsc-tab-btn active">&#128197;&nbsp; Book a Free Consultation</a>
-        <a href="#gsc-quote"   class="gsc-tab-btn ">&#128203;&nbsp; Get a Custom Quote</a>
+        <a href="javascript:void(0)" onclick="openGscModal('consultation')" class="gsc-tab-btn active">&#128197;&nbsp; Book a Free Consultation</a>
+        <a href="javascript:void(0)" onclick="openGscModal('quote')"   class="gsc-tab-btn ">&#128203;&nbsp; Get a Custom Quote</a>
       </div>
       <div class="gsc-card">
 
@@ -40134,8 +40134,8 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     <div class="gsc-modal-inner">
       <div class="gsc-tabs">
-        <a href="#gsc-consult" class="gsc-tab-btn ">&#128197;&nbsp; Book a Free Consultation</a>
-        <a href="#gsc-quote"   class="gsc-tab-btn active">&#128203;&nbsp; Get a Custom Quote</a>
+        <a href="javascript:void(0)" onclick="openGscModal('consultation')" class="gsc-tab-btn ">&#128197;&nbsp; Book a Free Consultation</a>
+        <a href="javascript:void(0)" onclick="openGscModal('quote')"   class="gsc-tab-btn active">&#128203;&nbsp; Get a Custom Quote</a>
       </div>
       <div class="gsc-card">
 
@@ -40616,25 +40616,12 @@ async function handleGscSubmit(e, id) {
     } else { btn.textContent = 'Something went wrong — try again'; btn.disabled = false; }
   } catch(err) { btn.textContent = 'Network error — try again'; btn.disabled = false; }
 }
-/* Intercept all #gsc- links */
-document.addEventListener('click', function(e) {
-  var a = e.target.closest('a[href]');
-  if (!a) return;
-  var h = a.getAttribute('href');
-  if (h === '#gsc-consult') { e.preventDefault(); openGscModal('consultation'); }
-  else if (h === '#gsc-quote') { e.preventDefault(); openGscModal('quote'); }
-});
 /* Close on backdrop click */
 document.getElementById('gscModalOverlay').addEventListener('click', function(e) {
   if (e.target === this || e.target.id === 'gscModalWrap') closeGscModal();
 });
 /* Escape key */
 document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeGscModal(); });
-/* Handle direct URL hash */
-window.addEventListener('load', function() {
-  if (window.location.hash === '#gsc-consult') openGscModal('consultation');
-  else if (window.location.hash === '#gsc-quote') openGscModal('quote');
-});
 </script>
 </body>
 </html>
