@@ -805,11 +805,17 @@
     }
   }
 
-  // Auto-switch to quote tab if URL has ?quote in it
-  var p = new URLSearchParams(location.search);
-  if (p.has('quote')) {
-    switchTab('quote', document.querySelectorAll('.tab-btn')[1]);
+  // Auto-switch tab based on URL hash
+  function applyHash() {
+    var h = window.location.hash;
+    if (h === '#quote') {
+      switchTab('quote', document.querySelectorAll('.tab-btn')[1]);
+    } else {
+      switchTab('consultation', document.querySelectorAll('.tab-btn')[0]);
+    }
   }
+  applyHash();
+  window.addEventListener('hashchange', applyHash);
 </script>
 </body>
 </html>
