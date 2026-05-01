@@ -3244,7 +3244,7 @@ Clinics"/>
 <div class="nav-ctas">
 <a href="tel:+14167055541" class="btn-phone">
 Call Us</a>
-<a href="#packages" href="#" onclick="openForm('consult');return false;" class="btn-primary">Book Free Consult</a>
+<a href="#packages" href="#" href="#consultation" onclick="openForm('consult');return false;" class="btn-primary">Book Free Consult</a>
 </div>
 </nav>
 
@@ -5798,7 +5798,7 @@ AR/604PFPt7JTMOelFFAGi67CF9KKKKAP//Z" alt="Grand Slam Clinics"/></div>
 <p class="hero-sub">Year-round elite coaching from former rep players and champions —
 built for serious athletes aged 8–18 across the Greater Toronto Area.</p>
 <div class="hero-ctas">
-<a href="#" onclick="openForm('consult');return false;" class="btn-hero-p">Book Free Consultation →</a>
+<a href="#" href="#consultation" onclick="openForm('consult');return false;" class="btn-hero-p">Book Free Consultation →</a>
 <a href="#coaches" class="btn-hero-s">Meet Our Coaches</a>
 </div>
 <div class="hero-stats">
@@ -36391,8 +36391,8 @@ player's development needs and goals.</p>
 (save $25)</li><li>10-session package — $600 (save $150)</li><li>Fully personalized
 plan</li><li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="#" onclick="openForm('consult');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#" onclick="openForm('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#" href="#consultation" onclick="openForm('consult');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#" href="#quote" onclick="openForm('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36405,8 +36405,8 @@ at a more accessible price point.</p>
 player</li><li>Great for friends &amp; teammates</li><li>Healthy competitive dynamic</li>
 <li>Flexible scheduling</li></ul>
 <div class="pkg-cta-pair">
-<a href="#" onclick="openForm('consult');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#" onclick="openForm('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#" href="#consultation" onclick="openForm('consult');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#" href="#quote" onclick="openForm('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36420,8 +36420,8 @@ staff to strengthen the entire roster — any time of year.</p>
 packages</li><li>Quoted by roster size &amp; frequency</li><li>Complements existing coaching
 staff</li><li>Team-wide development focus</li></ul>
 <div class="pkg-cta-pair">
-<a href="#" onclick="openForm('consult');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
-<a href="#" onclick="openForm('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
+<a href="#" href="#consultation" onclick="openForm('consult');return false;" class="pkg-cta pkg-cta-filled">Book Free Consult</a>
+<a href="#" href="#quote" onclick="openForm('quote');return false;" class="pkg-cta pkg-cta-outline">Get a Custom Quote</a>
 </div>
 </div>
 </div>
@@ -36588,8 +36588,8 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 <p>Spots fill up fast. Book your free consultation today and lock in a plan before the
 season starts.</p>
 <div class="cta-btns">
-<a href="#" onclick="openForm('consult');return false;" class="btn-white">Book Free Consultation →</a>
-<a href="#" onclick="openForm('quote');return false;" class="btn-woutline">Get a Custom Quote →</a>
+<a href="#" href="#consultation" onclick="openForm('consult');return false;" class="btn-white">Book Free Consultation →</a>
+<a href="#" href="#quote" onclick="openForm('quote');return false;" class="btn-woutline">Get a Custom Quote →</a>
 </div>
 </div>
 
@@ -39519,7 +39519,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 function openForm(tab) {
   var overlay = document.getElementById('formOverlay');
   var frame   = document.getElementById('formFrame');
-  frame.src = tab === 'quote' ? 'form.html?quote' : 'form.html';
+  frame.src   = tab === 'quote' ? 'consultation.html#quote' : 'consultation.html#consultation';
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -39527,9 +39527,22 @@ function closeForm() {
   document.getElementById('formOverlay').classList.remove('open');
   document.getElementById('formFrame').src = '';
   document.body.style.overflow = '';
+  history.replaceState(null, '', window.location.pathname);
 }
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeForm();
+});
+/* Also open via hash on direct URL visit */
+function checkHash() {
+  var h = window.location.hash;
+  if (h === '#consultation') openForm('consult');
+  else if (h === '#quote') openForm('quote');
+}
+window.addEventListener('DOMContentLoaded', checkHash);
+window.addEventListener('hashchange', function(){
+  var h = window.location.hash;
+  if (h === '#consultation') openForm('consult');
+  else if (h === '#quote') openForm('quote');
 });
 </script>
 </body>
