@@ -170,24 +170,47 @@
   }
 }
 
-/* FORM GRID */
-@media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
+/* =========================================
+   DESKTOP LAYOUTS (Columns)
+========================================= */
+
+/* INFO STRIP - 3 Columns */
+.info-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 36px;
 }
 
-/* INFO STRIP */
-@media (max-width: 768px) {
-  .info-strip {
-    grid-template-columns: 1fr;
-  }
+/* FORM GRID - 2 Columns */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
 }
 
-/* FAQ LAYOUT */
+/* FAQ LAYOUT - 2 Columns */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+/* =========================================
+   MOBILE LAYOUTS (Stack into 1 Column)
+========================================= */
+
 @media (max-width: 768px) {
+  .info-strip,
+  .form-grid,
   .faq-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Make form elements inside the specific panels stack too */
+  #gsf-panel-consultation > form > div,
+  #gsf-panel-quote > form > div {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -227,6 +250,14 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grand Slam Clinics — Elite Baseball Coaching</title>
+
+<!-- Favicons (Cache Busting) -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2">
+<link rel="icon" href="favicon.ico?v=2">
+<link rel="manifest" href="site.webmanifest?v=2">
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?
@@ -1165,7 +1196,7 @@ Booking</div><div class="contact-value">Book Free Consultation →</div></div>
 
 <div id="consultation" style="background:#09101f;background-image:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(208,2,27,0.12) 0%,transparent 70%),repeating-linear-gradient(-45deg,transparent,transparent 30px,rgba(255,255,255,0.012) 30px,rgba(255,255,255,0.012) 31px);padding:80px 24px 100px;box-sizing:border-box;font-family:'DM Sans',sans-serif;">
 <div id="quote" style="position:relative;"></div>
-<div style="max-width:100%;margin:0 auto;">
+<div style="max-width:900px;margin:0 auto;">
 
   <!-- Heading -->
   <div style="text-align:center;margin-bottom:48px;">
